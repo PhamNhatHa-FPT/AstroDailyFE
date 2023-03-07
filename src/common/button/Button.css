@@ -1,0 +1,133 @@
+.button {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 15px 25px;
+  line-height: 1.7em !important;
+  background-color: transparent;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border: 2px solid;
+  text-align: center;
+  border-radius: 10px;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: all !important;
+  transition-property: all !important;
+  /* margin-top: 20px; */
+  display: inline-block;
+}
+.button_img {
+  display: flex;
+  align-items: center;
+  color: #fe7f5c !important;
+  border-width: 1px !important;
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif !important;
+  text-transform: uppercase !important;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 100px;
+}
+.button_img:hover {
+  background-color: hsla(0, 0%, 100%, 0.2);
+}
+.button_0 {
+  color: #fe7f5c !important;
+  border-width: 0px !important;
+  border-radius: 0px;
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+.button_0:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.button_1 {
+  background: linear-gradient(-45deg, #fe7f5c, #ff8e6f, #ffae97);
+  background-size: 800% 400%;
+  color: white;
+  transition: all 0.5s ease-in-out;
+  animation: gradient 10s infinite cubic-bezier(0.62, 0.28, 0.23, 0.99) both;
+  border: none;
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  background-color: #fe7f5c;
+}
+.button_2 {
+  color: #fe7f5c !important;
+  border-width: 1px !important;
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif !important;
+  text-transform: uppercase !important;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 100px;
+}
+.button_2:hover {
+  background-color: hsla(0, 0%, 100%, 0.2);
+}
+.button:after {
+  font-size: 1.6em;
+  line-height: 1em;
+  content: "\35";
+  opacity: 0;
+  position: absolute;
+  margin-left: -1em;
+  transition: all 0.2s;
+  text-transform: none;
+  font-feature-settings: "kern" off;
+  font-variant: none;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: none;
+  font-family: ETmodules !important;
+  speak: none;
+}
+
+.button:hover:after {
+  opacity: 1;
+  margin-left: 0;
+}
+.profile-picture {
+  margin-right: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 10px;
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s;
+}
+
+.btnGra:hover {
+  animation: gradient 3s infinite;
+  transform: scale(1.05);
+}
+
+.btnGra:active {
+  animation: gradient 3s infinite;
+  transform: scale(0.8);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

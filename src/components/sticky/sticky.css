@@ -1,0 +1,60 @@
+.section_sticky {
+    background-size: initial;
+    background-image: url(http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/09/astrologist-01.png)!important;
+    background-color: #fcf3e4!important;
+        padding-bottom: 0!important;
+            padding: 4% 0;
+}
+.section_sticky .row_0{
+   padding-right: 60px!important;
+    padding-bottom: 120px!important;
+    padding-left: 60px!important;
+    margin-top: 150px!important;
+        max-width: 890px!important;
+            background-color: #ffffff;
+            padding: 27px 0;
+                   width: 80%;
+    max-width: 1080px;
+    margin: auto;
+}
+.section_sticky .row_1{
+    padding-bottom: 0!important;
+            padding: 27px 0;
+                   width: 80%;
+    max-width: 1080px;
+    margin: auto;
+}
+.section_sticky .row:after {
+    content: "";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+    width: 0;
+}
+.section_sticky .row_0 .column_0{
+    width: 100%;
+}
+.section_sticky .row_0 .column_0 .image_sticky{
+        margin-bottom: 2.75%;
+        margin-top: -150px!important;
+    text-align: center;
+}
+.section_sticky .row_1 .column_1{
+        float: left;
+width: 47.25%;
+        margin-right: 5.5%;
+}
+.section_sticky .row_1 .column_2{
+        float: left;
+width: 47.25%;
+    margin-right: 0!important;
+}
+.section_sticky .row_1 .column_1 .image_sticky_1{
+overflow-y: hidden;
+    margin-top: -100px!important;
+    margin-bottom: -100px!important;
+    text-align: left;
+    margin-left: 0;
+}

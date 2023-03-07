@@ -1,0 +1,48 @@
+.et_pb_text_6 h2, .et_pb_text_4 h2,.et_pb_text_1 h2 {
+    font-family: 'Philosopher',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 700;
+    font-size: 54px;
+    color: #313453;
+    text-align: left;
+}
+.et_pb_text_4 h3, .et_pb_text_6 h3, .et_pb_text_1 h3 {
+    font-family: 'Kaushan Script',handwriting;
+    font-style: italic;
+    color: #fe7f5c;
+    line-height: 1.3em;
+}
+.row_inner_1 {
+    padding-top: 80px!important;
+    padding-right: 60px!important;
+    padding-bottom: 80px!important;
+    padding-left: 60px!important;
+    margin-top: 200px!important;
+        padding: 5.82% 0;
+    background-color: #313453;
+    z-index: 9;
+    position: relative;
+}
+.image_0 {
+    margin-left: -30%!important;
+    position: absolute!important;
+    top: 0px;
+    bottom: auto;
+    left: 0px;
+    right: auto;
+    text-align: left;
+    margin-left: 0;
+}
+.et-pb-icon {
+     opacity: 1;
+    -webkit-animation: fadeTop 1s cubic-bezier(.77,0,.175,1) 1;
+    animation: fadeTop 1s cubic-bezier(.77,0,.175,1) 1;
+    color: #fe7f5c;
+    font-family: ETmodules!important;
+    font-weight: 400!important;
+}
+.text_2 {
+    color: rgba(255,255,255,0.64)!important;
+}
+.blurb_0{
+    font-family: 'Philosopher',Helvetica,Arial,Lucida,sans-serif;
+}

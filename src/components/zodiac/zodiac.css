@@ -1,0 +1,232 @@
+.with_background {
+  background-color: #262948 !important;
+  padding: 54px 0;
+}
+.zodiac_row_1 {
+  padding: 27px 0;
+}
+.zodiac_row_2 {
+  margin-top: 4% !important;
+  max-width: 996px !important;
+  padding: 27px 0;
+  margin: auto;
+}
+.zodiac_row {
+  width: 80%;
+  max-width: 1080px;
+  margin: auto;
+  position: relative;
+}
+.column {
+  /* float: left; */
+  background-size: cover;
+  background-position: 50%;
+  position: relative;
+  z-index: 2;
+  min-height: 1px;
+}
+.zodiac_row_1 .left {
+  width: 47.25%;
+  margin-right: 5.5%;
+}
+.zodiac_row_1 .right {
+  margin-right: 0 !important;
+  width: 47.25%;
+  margin: auto;
+  text-align: center;
+}
+.zodiac_row_2 .mode {
+  margin-right: 0 !important;
+  width: 100%;
+}
+.zodiac_row_2 .mode .image_01 {
+  margin-bottom: 0px !important;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 0;
+}
+.zodiac_row_2 .mode .image_01 span {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+.zodiac_row_2 .mode .image_0 span img {
+  position: relative;
+}
+
+.image_1 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: -4.5%;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_2 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: 3%;
+  bottom: auto;
+  right: 19%;
+  left: auto;
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_3 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: 19%;
+  bottom: auto;
+  right: 3%;
+  left: auto;
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_4 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: 50%;
+  bottom: auto;
+  right: -4.5%;
+  left: auto;
+  transform: translateY(-50%);
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_5 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  bottom: 19%;
+  top: auto;
+  right: 3px;
+  left: auto;
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_6 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  bottom: -4.5%;
+  top: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_7 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  bottom: 3%;
+  top: auto;
+  right: 19%;
+  left: auto;
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_8 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  bottom: 3%;
+  top: auto;
+  left: 19%;
+  right: auto;
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_9 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: 50%;
+  bottom: auto;
+  left: -4.5%;
+  right: auto;
+  transform: translateY(-50%);
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_10 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: 19%;
+  bottom: auto;
+  left: 3%;
+  right: auto;
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_11 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: 3%;
+  bottom: auto;
+  left: 19%;
+  right: auto;
+  text-align: left;
+  margin-left: 0;
+}
+
+.image_12 {
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  bottom: 19%;
+  top: auto;
+  left: 3%;
+  right: auto;
+  text-align: left;
+  margin-left: 0;
+}
+.image_overlay{
+       -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-duration: .2s;
+    animation-duration: .2s;
+        width: 10%;
+}
+.image_overlay:hover .has-box-shadow-overlay{
+    border-width: 8px;
+    box-shadow: 0px 0px 12px 12px rgb(251 243 230 / 16%);
+}
+.image_overlay>.has-box-shadow-overlay {
+  transition: border 300ms ease 0ms,box-shadow 300ms ease 0ms;
+  line-height: 0;
+}
+.has-box-shadow-overlay{
+        transition: border 300ms ease 0ms,box-shadow 300ms ease 0ms;
+    border-radius: 100px 100px 100px 100px;
+    overflow: hidden;
+    border-color: rgba(251,243,230,0.24)!important;
+    box-shadow: 0px 0px 0px 0px rgb(251 243 230 / 16%);
+        display: inline-block;
+    position: relative;
+    max-width: 100%;
+        border: 0 solid #333;
+}
+.has-box-shadow-overlay>.box-shadow-overlay {
+    transition: border 300ms ease 0ms,box-shadow 300ms ease 0ms;
+}
+.box-shadow-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    line-height: 0!important;
+
+}

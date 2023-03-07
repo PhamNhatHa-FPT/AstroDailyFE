@@ -1,0 +1,76 @@
+.pricing_table{
+    width: 33.33%;
+    max-width: 34%;
+    float: left;
+    /* width: 33.33%; */
+    /* max-width: 34%; */
+    flex: 1 1 auto;
+    /* border: 1px solid #bebebe; */
+    /* background-color: #fcfcfc; */
+    padding-bottom: 30px;
+    text-align: center;
+    /* margin: 30px -1px 0 0; */
+    position: relative;
+    box-shadow: 0 0 12px rgb(0 0 0 / 10%);
+}
+.pricing_table .pricing_heading{
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+.pricing_table .pricing_heading .pricing_title{
+    font-family: "Philosopher", Helvetica, Arial, Lucida, sans-serif !important;
+    font-size: 24px !important;
+    color: #fe7f5c !important;
+    padding-bottom: 5px;
+}
+.pricing_table .pricing_content_top{
+    border: none;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+.pricing_table .pricing_content_top .dollar_sign{
+    font-family: "Yeseva One", display;
+    font-size: 60px;
+    line-height: 1.03em;
+    font-weight: 300;
+}
+.pricing_table .pricing_content_top .sum {
+    font-family: "Yeseva One", display;
+    font-size: 60px;
+    font-weight: 300;
+}
+.pricing_table .pricing_content{
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    padding: 30px;
+    text-align: left;
+    position: relative;
+}
+.pricing_table .pricing_content .pricing{
+    list-style: none !important;
+    padding: 0 !important;
+    line-height: inherit !important;
+}
+.pricing_table .pricing_content .pricing li{
+    font-family: "Philosopher", Helvetica, Arial, Lucida, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.6em;
+    padding: 0 0 1.6em 14px;
+    position: relative;
+}
+.pricing_table .pricing_content .pricing li span {
+    position: relative;
+}
+.pricing_table .pricing_content .pricing li span:before {
+    border-color: #fe7f5c;
+}
+.pricing_table .pricing_content .pricing li span:before {
+    border-style: solid;
+    border-width: 3px;
+    content: "";
+    left: -14px;
+    position: absolute;
+    top: 9px;
+    border-radius: 3px;
+}
