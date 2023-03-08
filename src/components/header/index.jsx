@@ -10,7 +10,7 @@ import AppButton from "../../common/button";
 import { useIsHidden } from "../../hooks/useIsHidden";
 import "./header.css";
 import { FaGoogle } from "react-icons/fa";
-import { auth } from "../../configs/firebase.configs";
+import { auth } from "../../configs/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
 import { postLoginSuccess } from "../../store/actions/user.action";
 import Menu from "./menu";

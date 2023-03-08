@@ -1,24 +1,24 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBIjWa9mHVvVcMwViYDJrwVUkHVLhff_9M",
-  authDomain: "fir-744da.firebaseapp.com",
-  projectId: "fir-744da",
-  storageBucket: "fir-744da.appspot.com",
-  messagingSenderId: "353739360072",
-  appId: "1:353739360072:web:69ea06898195067340d57d",
-  measurementId: "G-34MMXJRH25",
+  apiKey: "AIzaSyDxIUodlCWR9GVH20q0fGx0IrLlEvXdWa4",
+  authDomain: "astrodaily-af227.firebaseapp.com",
+  projectId: "astrodaily-af227",
+  storageBucket: "astrodaily-af227.appspot.com",
+  messagingSenderId: "1095306987875",
+  appId: "1:1095306987875:web:5f097ca29a3fd30f74ab56",
+  measurementId: "G-N6FPKJ0NZX"
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
-export const storage = getStorage(app);
+export const db = getFirestore(app);
