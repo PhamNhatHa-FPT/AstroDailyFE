@@ -17,7 +17,7 @@ function Menu({ handleLogout, user }) {
       <AppButton
         children={user.displayName}
         btnType="button_img"
-        img={user.photoUrl}
+        img={user.photoURL}
         isSizeLarge={true}
         htmlType="a"
       />

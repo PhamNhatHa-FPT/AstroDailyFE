@@ -1,8 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
   signOut,
 } from "firebase/auth";
 import { Link } from "react-router-dom";
@@ -10,7 +7,7 @@ import AppButton from "../../common/button";
 import { useIsHidden } from "../../hooks/useIsHidden";
 import "./header.css";
 import { FaGoogle } from "react-icons/fa";
-import { auth } from "../../configs/firebase-config";
+import { auth } from "../../configs/firebase.configs";
 import { useDispatch, useSelector } from "react-redux";
 import { postLoginSuccess } from "../../store/actions/user.action";
 import Menu from "./menu";
@@ -23,19 +20,19 @@ function Header() {
     if (window.location.pathname === path) return "current-menu-item";
     else return "";
   };
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
-  };
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      currentUser && localStorage.setItem("token", JSON.stringify(currentUser.accessToken));
-    });
-    return () => {
-      unsubscribe();
-    };
-  // eslint-disable-next-line
-  }, []);
+  // const googleSignIn = () => {
+  //   const provider = new GoogleAuthProvider();
+  //   signInWithPopup(auth, provider);
+  // };
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     currentUser && localStorage.setItem("token", JSON.stringify(currentUser.accessToken));
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // // eslint-disable-next-line
+  // }, []);
 
   const handleSignOut = () => {
     signOut(auth);
@@ -105,8 +102,8 @@ function Header() {
               btnType="button_2"
               Icon={FaGoogle}
               isSizeLarge={true}
-              htmlType="a"
-              onClick={googleSignIn}
+              htmlType="link"
+              url="/login"
             />
           )}
 

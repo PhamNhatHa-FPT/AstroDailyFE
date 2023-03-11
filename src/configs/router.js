@@ -1,3 +1,5 @@
+import Login from "../auth/Login";
+import SignUp from "../auth/SignUp";
 import Dashboard from "../pages/admin/Dashboard";
 import About from "../pages/main/about";
 import Blog from "../pages/main/blog";
@@ -92,6 +94,16 @@ export const mainRouter = [
     exact: true,
     Component: TransitsOrbs,
   },
+  {
+    path: "/login",
+    exact: true,
+    Component: Login,
+  },
+  {
+    path: "/register",
+    exact: true,
+    Component: SignUp,
+  },
   // {
   //   path: "/dashboard",
   //   exact: true,
@@ -101,18 +113,18 @@ export const mainRouter = [
     Component: Err,
   },
 ];
-// export const signRouter = [
-//   {
-//     path: "/login",
-//     exact: false,
-//     Component: Login,
-//   },
-//   {
-//     path: "/register",
-//     exact: false,
-//     Component: Register,
-//   },
-// ];
+export const signRouter = [
+  {
+    path: "/login",
+    exact: false,
+    Component: Login,
+  },
+  {
+    path: "/register",
+    exact: false,
+    Component: SignUp,
+  },
+];
 export const adminRouter = [
   {
     path: "/dashboard",

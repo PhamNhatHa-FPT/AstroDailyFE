@@ -1,4 +1,4 @@
-import { db } from "../configs/firebase-config";
+import { db } from "../configs/firebase.configs";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 export function getUserDoc(id, callback) {

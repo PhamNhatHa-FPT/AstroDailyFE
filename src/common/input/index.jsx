@@ -1,9 +1,15 @@
 import "./input.css";
 
-function AppInput({ children }) {
+function AppInput({ type,children, value, onChange }) {
   return (
     <div className="input-group">
-      <input required type="text" name="text" className="input" />
+      <input
+        type={type}
+        className="input"
+        value={value}
+        onChange={onChange}
+        required
+      />
       <label className="user-label">{children}</label>
     </div>
   );

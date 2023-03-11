@@ -1,8 +1,10 @@
 import "./Button.css";
 import cls from "classnames";
 import Loading from "../loading";
+import { Link } from "react-router-dom";
 
 function AppButton({
+  type,
   children,
   btnType,
   isSizeLarge,
@@ -12,6 +14,7 @@ function AppButton({
   loadingPosition,
   htmlType,
   onClick,
+  url,
   ...restProps
 }) {
   const classes = cls("button", {
@@ -50,9 +53,28 @@ function AppButton({
     );
   }
 
+    if (htmlType === "link") {
+      return (
+        <Link
+          to={url}
+          className={classes}
+          {...restProps}
+          style={{
+            paddingTop: `${isSizeLarge ? "5px" : "15px"}`,
+            paddingRight: `${isSizeLarge ? "15px" : "25px"}`,
+            paddingBottom: `${isSizeLarge ? "5px" : "15px"}`,
+            paddingLeft: `${isSizeLarge ? "15px" : "25px"}`,
+          }}
+        >
+          {Icon && <Icon />} {jsxContent}{" "}
+          {img && <img src={img} alt="" className="profile-picture" />}
+        </Link>
+      );
+    }
+
   return (
     <button className={classes} {...restProps}>
-      <Icon /> {jsxContent}
+      {Icon && <Icon />} {jsxContent}
     </button>
   );
 }

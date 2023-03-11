@@ -4,7 +4,8 @@ import {
 } from "../constants/user.const";
 
 const initialState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("userLogin"))?
+        JSON.parse(localStorage.getItem("userLogin")): null,
 };
 
 const userReducer = (state = initialState, action) => {

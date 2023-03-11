@@ -1,11 +1,12 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { auth } from "../configs/firebase-config";
-import Button from '@mui/material/Button';
+import { auth } from "../configs/firebase.configs";
 import { getUserDoc } from "../connectFirestore/GetUser";
+import AppButton from "../common/button";
 
-function AuthDetails({ title }) {
+function AuthDetails() {
     const [authUser, setAuthUser] = useState(null);
+    console.log("🚀 ~ file: AuthDetails.jsx:9 ~ AuthDetails ~ authUser:", authUser)
 
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
@@ -31,24 +32,27 @@ function AuthDetails({ title }) {
     var role = null;
     if (authUser != null) {
         getUserDoc(authUser.uid, (userData) => {
+            console.log("🚀 ~ file: AuthDetails.jsx:34 ", userData)
             sessionStorage.setItem("userObject", JSON.stringify(userData));
         })
         // Store the object in session storage
         const userData = JSON.parse(sessionStorage.getItem("userObject"));
-        role = userData.userRole;
+        // role = userData.userRole;
     }
 
     return (
-        <div>
-            {authUser ? (
-                <>
-                    <p>{`Signed In as ${authUser.email} ${role}`}</p>
-                    <Button onClick={userSignOut} variant="contained">{title}</Button>
-                </>
-            ) : (
-                <p>Signed Out</p>
-            )}
-        </div>
+      <div className="et_contact_bottom_container">
+        {authUser ? (
+          <>{/* <p>{`Signed In as ${authUser.email} ${role}`}</p> */}</>
+        ) : (
+          <AppButton
+            children="logout"
+            btnType="button_2"
+            htmlType="a"
+            onClick={userSignOut}
+          />
+        )}
+      </div>
     );
 }
 
