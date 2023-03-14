@@ -14,7 +14,7 @@ import { FaGoogle } from "react-icons/fa";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { postLoginSuccess } from "../store/actions/user.action";
+import { postLoginSuccess, postUser } from "../store/actions/user.action";
 function Login() {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ function Login() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        localStorage.setItem("token", JSON.stringify(userCredential));
+        dispatch(postUser(userCredential.user.accessToken));
         history.push("/");
       })
       .catch((error) => {
@@ -40,7 +40,6 @@ function Login() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         dispatch(postLoginSuccess(currentUser.providerData[0]));
-        localStorage.setItem("token", JSON.stringify(currentUser.accessToken));
         localStorage.setItem(
           "userLogin",
           JSON.stringify(currentUser.providerData[0])

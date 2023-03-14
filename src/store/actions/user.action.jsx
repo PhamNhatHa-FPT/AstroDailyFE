@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwt from "jwt-decode";
 // import { NotificationManager } from "react-notifications";
 import {
   LOGIN_FAILED,
@@ -10,21 +11,21 @@ import {
 // const API_URL = process.env.REACT_APP_API_URL;
 const API_URL = process.env.REACT_APP_API_URL;
 
-export const postUser = ({formData}) => {
-  const userLogin = localStorage.getItem("userLogin");
-  const token = userLogin ? JSON.parse(userLogin).token : "";
+export const postUser = (idToken) => {
   return (dispatch) => {
     axios({
       method: "POST",
-      url: `${API_URL}/Planet`,
+      url: `${API_URL}/User/login`,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
-      data: { formData },
+      data: { idToken },
     })
       .then((res) => {
-        dispatch(postLoginSuccess(res.data));
+        const user = jwt(res.data)
+        console.log("🚀 ~ file: user.action.jsx:26 ~ .then ~ user:", user)
+        // localStorage.setItem("token", JSON.stringify(user));
+        // dispatch(postLoginSuccess(res.data));
       })
       .catch((err) => {
         dispatch(postLoginFailed(err));

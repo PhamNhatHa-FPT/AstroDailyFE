@@ -115,8 +115,8 @@ function Header() {
               btnType="button_2"
               Icon={FaGoogle}
               isSizeLarge={true}
-              htmlType="a"
-              onClick={googleSignIn}
+              htmlType="link"
+              url="/login"
             />
           )}
 
