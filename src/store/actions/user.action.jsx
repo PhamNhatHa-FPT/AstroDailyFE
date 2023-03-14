@@ -1,14 +1,9 @@
 import axios from "axios";
 // import { NotificationManager } from "react-notifications";
-import {
-  LOGIN_FAILED,
-  LOGIN_SUCCESS,
-  SELF_FAILED,
-  SELF_SUCCESS,
-} from "./../constants/user.const";
+import { LOGIN_FAILED, LOGIN_SUCCESS } from './../constants/user.const';
 
 // const API_URL = process.env.REACT_APP_API_URL;
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://localhost:5001/api";
 
 export const postUser = ({formData}) => {
   const userLogin = localStorage.getItem("userLogin");
@@ -42,43 +37,6 @@ export const postLoginSuccess = (user) => {
 const postLoginFailed = (err) => {
   return {
     type: LOGIN_FAILED,
-    payload: err,
-  };
-};
-
-export const getSelf = (formData, setFormData, setPlace, setText) => {
-  return (dispatch) => {
-    axios({
-      method: "GET",
-      url: `${API_URL}/Horoscope?name=${formData.name}&date=${formData.date}&time=${formData.place_id}&place_id=${formData.place_id}`,
-    })
-      .then((res) => {
-        dispatch(getSelfSuccess(res.data));
-        setFormData({
-          name: "",
-          date: "",
-          time: "",
-          place_id: 0,
-        });
-        setPlace(null);
-        setText("");
-      })
-      .catch((err) => {
-        dispatch(getSelfFailed(err));
-      });
-  };
-};
-
-export const getSelfSuccess = (self) => {
-  return {
-    type: SELF_SUCCESS,
-    payload: self,
-  };
-};
-
-const getSelfFailed = (err) => {
-  return {
-    type: SELF_FAILED,
     payload: err,
   };
 };

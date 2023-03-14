@@ -1,8 +1,8 @@
 import "./input.css";
 
-function AppInput({ type, children, value, onChange, style }) {
+function AppInput({ type,children, value, onChange }) {
   return (
-    <div className="input-group" style={style}>
+    <div className="input-group">
       <input
         type={type}
         className="input"
