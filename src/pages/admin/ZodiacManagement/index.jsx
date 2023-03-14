@@ -143,7 +143,6 @@ function ZodiacManagement() {
           {/* <UserTrip userList={users.trips} /> */}
         </div>
       </div>
-      
       <NotificationContainer />
     </div>
   );
