@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   signOut,
+} from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
 } from "firebase/auth";
 import { Link } from "react-router-dom";
 import AppButton from "../../common/button";
@@ -20,23 +25,31 @@ function Header() {
     if (window.location.pathname === path) return "current-menu-item";
     else return "";
   };
-  // const googleSignIn = () => {
-  //   const provider = new GoogleAuthProvider();
-  //   signInWithPopup(auth, provider);
-  // };
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     currentUser && localStorage.setItem("token", JSON.stringify(currentUser.accessToken));
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // // eslint-disable-next-line
-  // }, []);
-
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
+  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        dispatch(postLoginSuccess(currentUser.providerData[0]));
+        localStorage.setItem("token", JSON.stringify(currentUser.accessToken));
+        localStorage.setItem(
+          "userLogin",
+          JSON.stringify(currentUser.providerData[0])
+        );
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+    // eslint-disable-next-line
+  }, []);
   const handleSignOut = () => {
     signOut(auth);
     dispatch(postLoginSuccess(null));
+    localStorage.removeItem("token");
+    localStorage.removeItem("userLogin");
   };
 
   return (
@@ -102,8 +115,8 @@ function Header() {
               btnType="button_2"
               Icon={FaGoogle}
               isSizeLarge={true}
-              htmlType="link"
-              url="/login"
+              htmlType="a"
+              onClick={googleSignIn}
             />
           )}
 
