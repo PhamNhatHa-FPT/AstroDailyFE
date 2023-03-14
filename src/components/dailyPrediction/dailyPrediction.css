@@ -1,0 +1,135 @@
+.dailyPrediction_section {
+  background-size: initial;
+  background-image: url(http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/illustration-03.png) !important;
+}
+.dailyPrediction_gutters3 {
+  padding-right: 50px !important;
+  padding-left: 50px !important;
+  margin-top: 100px !important;
+  background-color: #fcf3e4;
+  padding: 27px 0;
+  width: 80%;
+  max-width: 1080px;
+  margin: auto;
+  display: flex;
+  position: relative;
+}
+.dailyPrediction_column_13 {
+  width: 47.25%;
+  margin-right: 5.5%;
+  z-index: 10 !important;
+  position: relative;
+}
+.dailyPrediction_column_14 {
+  width: 47.25%;
+  margin-right: 0 !important;
+  background-color: #ffffff;
+  padding-top: 50px;
+  padding-right: 40px;
+  padding-bottom: 50px;
+  padding-left: 40px;
+}
+.dailyPrediction_column_14:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  width: 0;
+}
+.dailyPrediction_text_18 {
+  margin-bottom: 5.82%;
+  text-align: left;
+  margin-top: -60px !important;
+}
+.dailyPrediction_text_18 h2 {
+  font-family: "Philosopher", Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  font-size: 54px;
+  color: #313453 !important;
+}
+.dailyPrediction_image_19 {
+  margin-bottom: -80px !important;
+  margin-left: -40% !important;
+  text-align: left;
+  margin-right: auto;
+  line-height: 0;
+}
+.dailyPrediction_image_19 span {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+.dailyPrediction_image_19 span img {
+  max-width: 100%;
+  height: auto;
+}
+.dailyPrediction_text_19 {
+  margin-bottom: 0;
+  text-align: left;
+  font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+  font-size: 16px;
+  line-height: 1.8em;
+  background-color: #313453;
+  padding-top: 20px !important;
+  padding-right: 30px !important;
+  padding-bottom: 20px !important;
+  padding-left: 30px !important;
+  position: absolute !important;
+  bottom: -76px;
+  top: auto;
+  right: 0px;
+  left: auto;
+  color: #fff !important;
+}
+.dailyPrediction_text_19 p {
+  padding-bottom: 0;
+}
+.dailyPrediction_image_20 {
+  margin-top: -140px !important;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 0 !important;
+  display: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 0;
+}
+.dailyPrediction_image_20 span {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+.dailyPrediction_image_20 span img {
+  max-width: 100%;
+  height: auto;
+}
+.dailyPrediction_text_20 {
+  margin-bottom: 5.82%;
+  text-align: left;
+}
+.dailyPrediction_text_20 h4 {
+  font-family: "Kaushan Script", handwriting;
+  color: #fe7f5c !important;
+  line-height: 1.3em;
+}
+.dailyPrediction_text_20 h3 {
+  font-family: "Philosopher", Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  color: #313453 !important;
+  line-height: 1.3em;
+}
+.dailyPrediction_text_21 {
+  margin-bottom: 5.82%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: left;
+  font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+  font-size: 16px;
+  line-height: 1.8em;
+}
+.dailyPrediction_text_21 p {
+  padding-bottom: 0;
+}

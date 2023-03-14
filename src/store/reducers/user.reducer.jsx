@@ -1,11 +1,15 @@
 import {
   LOGIN_FAILED,
   LOGIN_SUCCESS,
+  SELF_FAILED,
+  SELF_SUCCESS,
 } from "../constants/user.const";
 
 const initialState = {
-  user: JSON.parse(localStorage.getItem("userLogin"))?
-        JSON.parse(localStorage.getItem("userLogin")): null,
+  user: JSON.parse(localStorage.getItem("userLogin"))
+    ? JSON.parse(localStorage.getItem("userLogin"))
+    : null,
+  self:null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -15,6 +19,12 @@ const userReducer = (state = initialState, action) => {
       return { ...state, user: payload };
     }
     case LOGIN_FAILED: {
+      return { ...state, errors: payload };
+    }
+    case SELF_SUCCESS: {
+      return { ...state, self: payload };
+    }
+    case SELF_FAILED: {
       return { ...state, errors: payload };
     }
     default:
