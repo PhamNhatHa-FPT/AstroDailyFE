@@ -1,5 +1,4 @@
 import axios from "axios";
-import jwt from "jwt-decode";
 // import { NotificationManager } from "react-notifications";
 import {
   LOGIN_FAILED,
@@ -22,10 +21,7 @@ export const postUser = (idToken) => {
       data: { idToken },
     })
       .then((res) => {
-        const user = jwt(res.data)
-        console.log("🚀 ~ file: user.action.jsx:26 ~ .then ~ user:", user)
-        // localStorage.setItem("token", JSON.stringify(user));
-        // dispatch(postLoginSuccess(res.data));
+        localStorage.setItem("token", JSON.stringify(res.data));
       })
       .catch((err) => {
         dispatch(postLoginFailed(err));

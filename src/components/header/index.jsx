@@ -1,11 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   signOut,
-} from "firebase/auth";
-import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
 } from "firebase/auth";
 import { Link } from "react-router-dom";
 import AppButton from "../../common/button";
@@ -21,35 +16,16 @@ function Header() {
   const dispatch = useDispatch();
   const { hidden, handleClick } = useIsHidden();
   const {user} = useSelector((state)=> state.user)
+  console.log(user);
   const isActive = (path) => {
     if (window.location.pathname === path) return "current-menu-item";
     else return "";
   };
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
-  };
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        dispatch(postLoginSuccess(currentUser.providerData[0]));
-        localStorage.setItem("token", JSON.stringify(currentUser.accessToken));
-        localStorage.setItem(
-          "userLogin",
-          JSON.stringify(currentUser.providerData[0])
-        );
-      }
-    });
-    return () => {
-      unsubscribe();
-    };
-    // eslint-disable-next-line
-  }, []);
   const handleSignOut = () => {
     signOut(auth);
     dispatch(postLoginSuccess(null));
     localStorage.removeItem("token");
-    localStorage.removeItem("userLogin");
+    localStorage.removeItem("userObject");
   };
 
   return (

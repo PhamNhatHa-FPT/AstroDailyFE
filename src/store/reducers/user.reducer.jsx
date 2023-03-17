@@ -6,10 +6,10 @@ import {
 } from "../constants/user.const";
 
 const initialState = {
-  user: JSON.parse(localStorage.getItem("userLogin"))
-    ? JSON.parse(localStorage.getItem("userLogin"))
+  user: JSON.parse(localStorage.getItem("userObject"))
+    ? JSON.parse(localStorage.getItem("userObject"))
     : null,
-  self:null,
+  self: null,
 };
 
 const userReducer = (state = initialState, action) => {

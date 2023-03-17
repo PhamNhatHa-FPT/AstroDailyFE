@@ -15,13 +15,14 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postLoginSuccess, postUser } from "../store/actions/user.action";
+import { getUserDoc } from "../connectFirestore/GetUser";
 function Login() {
   let history = useHistory();
   const dispatch = useDispatch();
+  const [authUser, setAuthUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = (e) => {
-    //to Login
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -37,21 +38,24 @@ function Login() {
     signInWithPopup(auth, provider);
   };
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const listen = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        dispatch(postLoginSuccess(currentUser.providerData[0]));
-        localStorage.setItem(
-          "userLogin",
-          JSON.stringify(currentUser.providerData[0])
-        );
-        history.push("/");
+        setAuthUser(currentUser);
+      } else {
+        setAuthUser(null);
       }
     });
     return () => {
-      unsubscribe();
+      listen();
     };
     // eslint-disable-next-line
   }, []);
+  if (authUser !== null) {
+    getUserDoc(authUser.uid, (userData) => {
+      dispatch(postLoginSuccess(userData));
+      localStorage.setItem("userObject", JSON.stringify(userData));
+    });
+  }
   return (
     <div className="et_builder_inner_content et_pb_gutters3">
       <TextInner child="Login" htmlType="h1" />
@@ -111,29 +115,3 @@ function Login() {
   );
 }
 export default Login;
-
-//   <div className="login-container">
-//     <form onSubmit={login}>
-//       <h1>Login</h1>
-//       <TextField
-//         type="email"
-//         label="Email"
-//         value={email}
-//         onChange={(e) => setEmail(e.target.value)}
-//         variant="standard"
-//       />
-//       <br />
-//       <TextField
-//         type="password"
-//         label="Password"
-//         value={password}
-//         onChange={(e) => setPassword(e.target.value)}
-//         variant="standard"
-//       />
-//       <br />
-//       <button type="submit" variant="contained">
-//         zxc
-//       </button>
-//     </form>
-//     <AuthDetails title="Logout" />
-//   </div>

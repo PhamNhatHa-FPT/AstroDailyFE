@@ -5,39 +5,69 @@ import NotificationContainer from "react-notifications/lib/NotificationContainer
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../../../configs/firebase.configs";
 function ZodiacManagement() {
-  const [listHouse, setListHouse] = useState(null);
+  // const [listHouse, setListHouse] = useState(null);
   const [loadingInfo, setlLoadingInfo] = useState(null);
-  const [text, setText] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      text.trim()
-        ? axios({
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/Zodiac/${text.trim()}`,
-          })
-            .then((res) => {
-              setListHouse(res.data);
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-        : axios({
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/Zodiac`,
-          })
-            .then((res) => {
-              setListHouse(res.data);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-    };
-    fetchData();
-  }, [text]);
+  // const [text, setText] = useState("");
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     text.trim()
+  //       ? axios({
+  //           method: "GET",
+  //           url: `${process.env.REACT_APP_API_URL}/Zodiac/${text.trim()}`,
+  //         })
+  //           .then((res) => {
+  //             setListHouse(res.data);
+  //           })
+  //           .catch((err) => {
+  //             console.log(err);
+  //           })
+  //       : axios({
+  //           method: "GET",
+  //           url: `${process.env.REACT_APP_API_URL}/Zodiac`,
+  //         })
+  //           .then((res) => {
+  //             setListHouse(res.data);
+  //           })
+  //           .catch((err) => {
+  //             console.error(err);
+  //           });
+  //   };
+  //   fetchData();
+  // }, [text]);
+      const [zodiac, setZodiac] = useState("");
+      const [zodiacs, setZodiacs] = useState([]);
+      const addZodiac = async (e) => {
+        e.preventDefault();
+        try {
+          const docRef = await addDoc(collection(db, "/zodiac"), {
+            zodiac: zodiac,
+          });
+          console.log(docRef.id);
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
+      const fetchZodiac = async () => {
+        await getDocs(collection(db, "/zodiac")).then((querySnapshot) => {
+          const newData = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          setZodiacs(newData);
+        });
+      };
+
+      useEffect(() => {
+        fetchZodiac();
+      }, []);
+ 
   return (
     <div className={styles.container}>
-      <div className={styles.col_7}>
+      <div className={styles.col_dash}>
         <div className={styles.white_box}>
           <div style={{ flex: "1 1 0%" }}>
             <div className={styles.list_header}>
@@ -50,8 +80,8 @@ function ZodiacManagement() {
                     <input
                       type="text"
                       placeholder="Search here..."
-                      value={text}
-                      onChange={(e) => setText(e.target.value)}
+                      // value={text}
+                      // onChange={(e) => setText(e.target.value)}
                     />
                   </div>
                   <button
@@ -71,10 +101,9 @@ function ZodiacManagement() {
                   >
                     User Name
                   </th>
-                  <th style={{ width: 120 }}>Name</th>
-                  <th style={{ width: 120 }}>Name</th>
+                  <th>Description</th>
                   <th style={{ width: 120, borderRadius: "0px 30px 30px 0px" }}>
-                    Name
+                    Status
                   </th>
                   {/* <th style={{ width: 120, borderRadius: "0px 30px 30px 0px" }}>
             Delete
@@ -87,26 +116,23 @@ function ZodiacManagement() {
                     <td style={{ textAlign: "end" }}></td>
                   </tr>
                 ) : (
-                  listHouse && (
+                  zodiacs && (
                     <>
-                      {listHouse.length > 0 ? (
+                      {zodiacs.length > 0 ? (
                         <>
-                          {listHouse.map((houses, index) => {
+                          {zodiacs.map((zodiac, index) => {
                             return (
                               <tr key={index}>
                                 <th>
                                   <div className={styles.align_items_center}>
-                                    <p>{houses.name}</p>
+                                    <p>{zodiac.name}</p>
                                   </div>
                                 </th>
                                 <td>
-                                  <p>{houses.name}</p>
+                                  <p>{zodiac.description}</p>
                                 </td>
                                 <td>
-                                  <p>{houses.name}</p>
-                                </td>
-                                <td>
-                                  <p>{houses.name}</p>
+                                  <p>{zodiac.status ?"true":"false"}</p>
                                 </td>
                               </tr>
                             );
@@ -122,25 +148,6 @@ function ZodiacManagement() {
             </table>
           </div>
           {/* <Pagination value={page} range={totalPages} onChange={setPage} /> */}
-        </div>
-      </div>
-      <div className={styles.col_5}>
-        {/* {users == null ? (
-          <></>
-        ) : loading ? (
-          <div className={styles.white_box_5}>
-            <Load />
-          </div>
-        ) : (
-          <div className={styles.white_box_5}>
-            <ProfileUser users={users} />
-          </div>
-        )} */}
-        <div className={styles.white_box_5}></div>
-      </div>
-      <div className={styles.col_dash}>
-        <div className={styles.white_box_5}>
-          {/* <UserTrip userList={users.trips} /> */}
         </div>
       </div>
       <NotificationContainer />

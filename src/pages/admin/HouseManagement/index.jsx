@@ -37,7 +37,7 @@ function HouseManagement() {
   }, [text]);
   return (
     <div className={styles.container}>
-      <div className={styles.col_7}>
+      <div className={styles.col_dash}>
         <div className={styles.white_box}>
           <div style={{ flex: "1 1 0%" }}>
             <div className={styles.list_header}>
@@ -123,20 +123,6 @@ function HouseManagement() {
           </div>
           {/* <Pagination value={page} range={totalPages} onChange={setPage} /> */}
         </div>
-      </div>
-      <div className={styles.col_5}>
-        {/* {users == null ? (
-          <></>
-        ) : loading ? (
-          <div className={styles.white_box_5}>
-            <Load />
-          </div>
-        ) : (
-          <div className={styles.white_box_5}>
-            <ProfileUser users={users} />
-          </div>
-        )} */}
-        <div className={styles.white_box_5}></div>
       </div>
       {/* <div className={styles.col_dash}>
         <div className={styles.white_box_5}>
