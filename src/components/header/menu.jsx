@@ -15,7 +15,7 @@ function Menu({ handleLogout, user }) {
       onClick={onClick}
     >
       <AppButton
-        children={user.userLastName}
+        children={user.userLastName ? user.userLastName : user.displayName}
         btnType="button_img"
         isSizeLarge={true}
         htmlType="a"
@@ -24,10 +24,7 @@ function Menu({ handleLogout, user }) {
         <ul>
           {user.userRole === "admin" && (
             <li className="list-item">
-              <Link
-                to="/dashboard"
-                className="item item--help"
-              >
+              <Link to="/dashboard" className="item item--help">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

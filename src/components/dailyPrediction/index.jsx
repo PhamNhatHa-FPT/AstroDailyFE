@@ -10,6 +10,7 @@ import "./dailyPrediction.css";
 function DailyPrediction() {
   const dispatch = useDispatch();
   const [place, setPlace] = useState(null);
+  const [Loading, setLoading] = useState(false);
   const [text, setText] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -43,7 +44,7 @@ function DailyPrediction() {
   }
   const submit = async (evt) => {
     evt.preventDefault();
-    dispatch(getSelf(formData, setFormData, setPlace, setText));
+    dispatch(getSelf(formData, setFormData, setPlace, setText, setLoading));
   };
   return (
     <div className="dailyPrediction_section">
@@ -129,9 +130,24 @@ function DailyPrediction() {
                   </select>
                 </div>
               )}
-              <div className="et_contact_bottom_container">
-                <AppButton children="Read more" btnType="button_1" />
-              </div>
+              {Loading ? (
+                <div className="et_contact_bottom_container">
+                  <AppButton
+                    children="Loading ..."
+                    btnType="button_1"
+                    style={{ opacity: 0.7 }}
+                    disabled={Loading}
+                  />
+                </div>
+              ) : (
+                <div className="et_contact_bottom_container">
+                  <AppButton
+                    children="Read more"
+                    btnType="button_1"
+                    disabled={Loading}
+                  />
+                </div>
+              )}
             </form>
           </div>
         </div>

@@ -48,7 +48,7 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 .button_1 {
-  background: linear-gradient(-45deg, #fe7f5c, #ff8e6f, #ffae97);
+  /* background: linear-gradient(-45deg, #fe7f5c, #ff8e6f, #ffae97); */
   background-size: 800% 400%;
   color: white;
   transition: all 0.5s ease-in-out;

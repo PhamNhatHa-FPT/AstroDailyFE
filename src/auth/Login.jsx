@@ -19,18 +19,20 @@ import { getUserDoc } from "../connectFirestore/GetUser";
 function Login() {
   let history = useHistory();
   const dispatch = useDispatch();
+  const [error, setError] = useState("");
   const [authUser, setAuthUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = (e) => {
     e.preventDefault();
+    setError("");
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         dispatch(postUser(userCredential.user.accessToken));
         history.push("/");
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
   };
   const googleSignIn = () => {
@@ -50,6 +52,22 @@ function Login() {
     };
     // eslint-disable-next-line
   }, []);
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          dispatch(postLoginSuccess(currentUser.providerData[0]));
+          localStorage.setItem(
+            "userObject",
+            JSON.stringify(currentUser.providerData[0])
+          );
+          history.push("/");
+        }
+      });
+      return () => {
+        unsubscribe();
+      };
+      // eslint-disable-next-line
+    }, []);
   if (authUser !== null) {
     getUserDoc(authUser.uid, (userData) => {
       dispatch(postLoginSuccess(userData));
@@ -69,6 +87,17 @@ function Login() {
               id="et_pb_contact_form_0"
               className="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix"
             >
+              <div className="et_pb_text_inner">
+                <h3
+                  style={{
+                    color: "rgb(254, 127, 92)",
+                    fontFamily: "Philosopher",
+                    paddingBottom: "20px",
+                  }}
+                >
+                  {error && error}
+                </h3>
+              </div>
               <div className="et_pb_contact">
                 <form className="et_pb_contact_form clearfix" onSubmit={login}>
                   <AppInput
@@ -93,19 +122,22 @@ function Login() {
                   </div>
                   {/* <AuthDetails /> */}
                 </form>
-                <AppButton
-                  children="Login"
-                  btnType="button_2"
-                  Icon={FaGoogle}
-                  htmlType="a"
-                  onClick={googleSignIn}
-                />
-                <AppButton
-                  children="Register"
-                  btnType="button_2"
-                  htmlType="link"
-                  url="/register"
-                />
+                <div style={{display: "flex",paddingTop: "50px"}}>
+                  <AppButton
+                    children="Login"
+                    btnType="button_2"
+                    Icon={FaGoogle}
+                    htmlType="a"
+                    onClick={googleSignIn}
+                  />
+                  <div style={{ padding: "5px" }}></div>
+                  <AppButton
+                    children="Register"
+                    btnType="button_2"
+                    htmlType="link"
+                    url="/register"
+                  />
+                </div>
               </div>
             </div>
           </div>

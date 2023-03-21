@@ -8,50 +8,60 @@ import { useState } from "react";
 import AppInput from "../../../common/input";
 import AppButton from "../../../common/button";
 import { NotificationManager } from "react-notifications";
-function PlanetManagement() {
+import { useDispatch } from "react-redux";
+import { getQuote } from "../../../store/actions/user.action";
+function QuoteManagement() {
+  const dispatch = useDispatch();
   const [listHouse, setListHouse] = useState(null);
-  const [loadingInfo, setlLoadingInfo] = useState(null);
+  // const [loadingInfo, setlLoadingInfo] = useState(null);
   const [text, setText] = useState("");
   const [name, setName] = useState(null);
   const [Loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     id: "",
-    name: "",
-    description: "",
+    script:"",
     status: "save",
   });
+  //const { quote } = useSelector((state) => state.user);
+
+      useEffect(() => {
+        dispatch(getQuote());
+        // eslint-disable-next-line
+      }, []);
   const update = (data) => {
-    setName(data.name);
+    setName(data.id);
     setFormData({
       id: data.id,
-      name: data.name,
-      description: data.description,
+      script:data.script,
       status: "update",
     });
   };
+  const Delete = (data) => {
+    axios({
+      method: "DELETE",
+      url: `${process.env.REACT_APP_API_URL}/Quote/${data.id}`,
+    })
+      .then((res) => {
+        setListHouse(listHouse.filter((f) => f.id !== data.id));
+        NotificationManager.success("success");
+      })
+      .catch((err) => {
+        console.log(err);
+        NotificationManager.error("error");
+      });
+  };
   useEffect(() => {
     const fetchData = async () => {
-      text.trim()
-        ? axios({
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/Planet/${text.trim()}`,
-          })
-            .then((res) => {
-              setListHouse(res.data);
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-        : axios({
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/Planet`,
-          })
-            .then((res) => {
-              setListHouse(res.data);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
+      axios({
+        method: "GET",
+        url: `${process.env.REACT_APP_API_URL}/Quote/`,
+      })
+        .then((res) => {
+          setListHouse(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     };
     fetchData();
   }, [text]);
@@ -71,17 +81,13 @@ function PlanetManagement() {
       method: formData.status !== "update" ? "POST" : "PUT",
       url:
         formData.status !== "update"
-          ? `${process.env.REACT_APP_API_URL}/Planet/create`
-          : `${process.env.REACT_APP_API_URL}/Planet/${name}/update`,
+          ? `${process.env.REACT_APP_API_URL}/Quote/create`
+          : `${process.env.REACT_APP_API_URL}/Quote/${name}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      data: {
-        name: formData.name,
-        description: formData.description,
-        status: 0,
-      },
+      data: { script: formData.script },
     })
       .then((res) => {
         let indexUpdate = "";
@@ -90,14 +96,12 @@ function PlanetManagement() {
           ? setListHouse([...[res.data], ...listHouse])
           : (listHouse[indexUpdate] = {
               id: formData.id,
-              name: formData.name,
-              description: formData.description,
+              script: formData.script,
             });
 
         setFormData({
           id: "",
-          name: "",
-          description: "",
+          script: "",
           status: "save",
         });
         setLoading(false);
@@ -116,7 +120,7 @@ function PlanetManagement() {
           <div style={{ flex: "1 1 0%" }}>
             <div className={styles.list_header}>
               <div className={styles.main_title}>
-                <h3>Planet Management</h3>
+                <h3>Quote Management</h3>
               </div>
               <div className={styles.search_field}>
                 <form>
@@ -141,16 +145,12 @@ function PlanetManagement() {
               <thead>
                 <tr>
                   <th style={{ borderRadius: "30px 0 0 30px" }}>ID</th>
-                  <th>Name</th>
-                  <th>description</th>
+                  <th>script</th>
                   <th style={{ borderRadius: "0px 30px 30px 0px" }}>action</th>
-                  {/* <th style={{ width: 120, borderRadius: "0px 30px 30px 0px" }}>
-            Delete
-          </th> */}
                 </tr>
               </thead>
               <tbody>
-                {loadingInfo ? (
+                {false ? (
                   <tr>
                     <td style={{ textAlign: "end" }}></td>
                   </tr>
@@ -159,29 +159,33 @@ function PlanetManagement() {
                     <>
                       {listHouse.length > 0 ? (
                         <>
-                          {listHouse.map((houses, index) => {
+                          {listHouse.map((quote, index) => {
                             return (
                               <tr key={index}>
                                 <th>
-                                  {/* <div className={styles.align_items_center}>
-                                    
-                                  </div> */}
-                                  <p>{houses.id}</p>
+                                  <p>{quote.id}</p>
                                 </th>
                                 <th>
-                                  <p>{houses.name}</p>
+                                  <p>{quote.script}</p>
                                 </th>
                                 <th>
-                                  <p>{houses.description}</p>
-                                </th>
-                                <th>
-                                  <AppButton
-                                    children="Update"
-                                    btnType="button_2"
-                                    isSizeLarge={true}
-                                    htmlType="a"
-                                    onClick={() => update(houses)}
-                                  />
+                                  <div style={{ display: "flex" }}>
+                                    <AppButton
+                                      children="Update"
+                                      btnType="button_2"
+                                      isSizeLarge={true}
+                                      htmlType="a"
+                                      onClick={() => update(quote)}
+                                    />
+                                    <div style={{ padding: "5px" }}></div>
+                                    <AppButton
+                                      children="Delete"
+                                      btnType="button_1"
+                                      isSizeLarge={true}
+                                      htmlType="a"
+                                      onClick={() => Delete(quote)}
+                                    />
+                                  </div>
                                 </th>
                               </tr>
                             );
@@ -203,19 +207,11 @@ function PlanetManagement() {
         <div className={styles.white_box_5}>
           <div className="dailyPrediction_text_21">
             <form className="et_pb_contact_form clearfix" onSubmit={submit}>
-              <div style={{ display: "flex" }}>
-                <AppInput
-                  type="text"
-                  children="Name"
-                  onChange={handleChanges("name")}
-                  value={formData.name}
-                />
-              </div>
               <AppInput
                 type="text"
-                children="Description"
-                onChange={handleChanges("description")}
-                value={formData.description}
+                children="Script"
+                onChange={handleChanges("script")}
+                value={formData.script}
               />
               {Loading ? (
                 <div className="et_contact_bottom_container">
@@ -244,4 +240,4 @@ function PlanetManagement() {
   );
 }
 
-export default PlanetManagement;
+export default QuoteManagement;

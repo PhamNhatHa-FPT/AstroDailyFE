@@ -41,12 +41,16 @@ a {
 .menu {
     align-items: center;
     display: flex;
+    justify-content:right;
     flex-grow: 1;
     flex-shrink: 1;
     max-width: 100%;
     min-width: 0px;
 }
-
+.headerLink{
+    font-size: 20px;
+    font-weight: 600 !important;
+}
 .profile {
     align-items: center;
     display: flex;

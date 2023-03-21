@@ -67,7 +67,16 @@
 .col_5 {
     width: 40%;
 }
+@media only screen and (max-width: 1300px) {
+  .col_7 {
+    width: 100%;
+    padding-right: 25px;
+}
 
+.col_5 {
+    width: 60%;
+}
+}
 .white_box {
     padding: 30px;
     box-shadow: 0 0 24px hsl(0deg 0% 4% / 15%);
@@ -116,9 +125,12 @@
     top: 0;
     right: 0;
     padding-right: 30px;
+    padding-top: 10px;
     width: auto;
 }
-
+.search_field button svg{
+    font-size: 25px;
+}
 .white_box table {
     background: #fff;
     border-radius: 10px;
@@ -141,7 +153,7 @@
 .white_box table tbody tr th {
     font-size: 14px;
     color: #828bb2;
-    font-weight: 400;
+    font-weight: 600;
     padding: 16px 30px;
 }
 
@@ -169,11 +181,14 @@
 .white_box table tbody tr td {
     font-size: 14px;
     color: #828bb2;
+    border-bottom: 2px solid #a1abda;
     font-weight: 400;
     padding: 16px 30px;
     text-align: initial;
 }
-
+.white_box table tbody tr th {
+    border-bottom: 2px solid #a1abda;
+}
 .white_box_5 {
     padding: 30px;
     margin-bottom: 25px;

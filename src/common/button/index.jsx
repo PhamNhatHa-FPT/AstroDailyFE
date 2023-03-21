@@ -14,6 +14,7 @@ function AppButton({
   loadingPosition,
   htmlType,
   onClick,
+  disabled,
   url,
   ...restProps
 }) {
@@ -45,6 +46,7 @@ function AppButton({
             paddingLeft: `${isSizeLarge ? "15px" : "25px"}`,
           }}
           onClick={onClick}
+          disabled={disabled}
         >
           {Icon && <Icon />} {jsxContent}{" "}
           {img && <img src={img} alt="" className="profile-picture" />}

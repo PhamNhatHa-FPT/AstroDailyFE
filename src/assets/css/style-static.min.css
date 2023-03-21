@@ -7768,14 +7768,14 @@ a.et_pb_more_button:after {
 .et_pb_module.et_pb_text_align_justified {
   text-align: justify;
 }
-.clearfix:after {
+/* .clearfix:after {
   visibility: hidden;
   display: block;
   font-size: 0;
   content: " ";
   clear: both;
   height: 0;
-}
+} */
 .et_pb_bg_layout_light .et_pb_more_button {
   color: #2ea3f2;
 }

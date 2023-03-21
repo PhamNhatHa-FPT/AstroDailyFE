@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import AppButton from "../../../common/button";
 import FlipCard from "../../../common/flipCard";
 import AppTag from "../../../common/tag/tag";
 import Banner from "../../../components/banner";
 import ServicesHome from "../../../components/servicesHome";
+import { getWeather } from "../../../store/actions/user.action";
 
 function Home() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(getWeather());
+      // eslint-disable-next-line
+    }, []);
   return (
     <div className="et_builder_inner_content et_pb_gutters3">
       <Banner />

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./headerAmin.module.css";
 export default function HeaderAdmin() {
-
   return (
     <header>
       <div className={styles.header}>
-        <div className={styles.menu}></div>
+        <div className={styles.menu}>
+        </div>
         <div className={styles.profile}>
           <div className={styles.profileList}>
             <div style={{ display: "flex", alignItems: "center" }}>

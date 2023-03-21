@@ -5,6 +5,7 @@ import styles from "./Tabs.module.css";
 // import logo from "../../../../assets/images/logos/logo-black-3.png";
 import HeaderAdmin from "./../header/index";
 import { Link } from "react-router-dom";
+// import Header from "../../../../components/header";
 // import { useIsLogin } from "../../../../hooks/useIsLogin";
 class Tabs extends Component {
   static propTypes = {
@@ -35,9 +36,7 @@ class Tabs extends Component {
       <>
         <nav className={styles.tabs}>
           <div className={styles.logo}>
-            <Link
-              to="/"
-            >
+            <Link to="/">
               <h2 style={{ color: "#fe7f5c", fontFamily: "Philosopher" }}>
                 Astrologer Home
               </h2>

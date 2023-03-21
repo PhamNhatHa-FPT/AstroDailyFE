@@ -1,13 +1,14 @@
 import React from "react";
 import {
   FaUserCog,
-  FaPlane,
   FaHouseUser,
   FaPaperPlane,
   FaJournalWhills,
 } from "react-icons/fa";
+import { BsFillBellFill } from "react-icons/bs";
 import HouseManagement from "../HouseManagement";
 import PlanetManagement from "../PlanetManagement";
+import QuoteManagement from "../QuoteManagement";
 import UserManagement from "../userManagement";
 import ZodiacManagement from "../ZodiacManagement";
 import Tabs from "./tab/tabs";
@@ -19,13 +20,16 @@ function Dashboard() {
         <UserManagement />
       </div>
       <div label="House Management" Icon={FaHouseUser}>
-        <HouseManagement/>
+        <HouseManagement />
       </div>
       <div label="Planet Management" Icon={FaPaperPlane}>
-        <PlanetManagement/>
+        <PlanetManagement />
       </div>
       <div label="Zodiac Management" Icon={FaJournalWhills}>
-        <ZodiacManagement/>
+        <ZodiacManagement />
+      </div>
+      <div label="Quote Management" Icon={BsFillBellFill}>
+        <QuoteManagement />
       </div>
     </Tabs>
   );

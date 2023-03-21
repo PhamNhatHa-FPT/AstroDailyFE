@@ -5,10 +5,30 @@ import NotificationContainer from "react-notifications/lib/NotificationContainer
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import AppInput from "../../../common/input";
+import AppButton from "../../../common/button";
+import { NotificationManager } from "react-notifications";
 function HouseManagement() {
   const [listHouse, setListHouse] = useState(null);
   const [loadingInfo, setlLoadingInfo] = useState(null);
   const [text, setText] = useState("");
+  const [name, setName] = useState(null);
+  const [Loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    id:"",
+    name: "",
+    description: "",
+    status: "save",
+  });
+  const update = (data) => {
+    setName(data.name);
+    setFormData({
+      id: data.id,
+      name: data.name,
+      description: data.description,
+      status: "update",
+    });
+  };
   useEffect(() => {
     const fetchData = async () => {
       text.trim()
@@ -35,9 +55,59 @@ function HouseManagement() {
     };
     fetchData();
   }, [text]);
+  function handleChanges(key) {
+    return (evt) => {
+      setFormData({
+        ...formData,
+        [key]: evt.target.value,
+      });
+    };
+  }
+  const token = JSON.parse(localStorage.getItem("token"));
+  const submit = async (evt) => {
+    evt.preventDefault();
+    setLoading(true);
+    axios({
+      method: formData.status !== "update" ? "POST" : "PUT",
+      url:
+        formData.status !== "update"
+          ? `${process.env.REACT_APP_API_URL}/House/`
+          : `${process.env.REACT_APP_API_URL}/House/${name}/update`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: { name: formData.name, description: formData.description },
+    })
+      .then((res) => {
+        let indexUpdate = "";
+        indexUpdate = listHouse.findIndex((data) => data.id === formData.id);
+        formData.status !== "update"
+          ? setListHouse([...[res.data], ...listHouse])
+          : (listHouse[indexUpdate] = {
+              id: formData.id,
+              name: formData.name,
+              description: formData.description,
+            });
+           
+        setFormData({
+          id: "",
+          name: "",
+          description: "",
+          status: "save",
+        });
+        setLoading(false);
+        NotificationManager.success("success");
+      })
+      .catch((err) => {
+        setLoading(false);
+        NotificationManager.error("error");
+      });
+    // dispatch(getSelf(formData, setFormData, setPlace, setText, setLoading));
+  };
   return (
     <div className={styles.container}>
-      <div className={styles.col_dash}>
+      <div className={styles.col_7}>
         <div className={styles.white_box}>
           <div style={{ flex: "1 1 0%" }}>
             <div className={styles.list_header}>
@@ -66,16 +136,10 @@ function HouseManagement() {
             <table>
               <thead>
                 <tr>
-                  <th
-                    style={{ textAlign: "left", borderRadius: "30px 0 0 30px" }}
-                  >
-                    User Name
-                  </th>
-                  <th style={{ width: 120 }}>Name</th>
-                  <th style={{ width: 120 }}>Name</th>
-                  <th style={{ width: 120, borderRadius: "0px 30px 30px 0px" }}>
-                    Name
-                  </th>
+                  <th style={{ borderRadius: "30px 0 0 30px" }}>ID</th>
+                  <th>Name</th>
+                  <th>description</th>
+                  <th style={{ borderRadius: "0px 30px 30px 0px" }}>action</th>
                   {/* <th style={{ width: 120, borderRadius: "0px 30px 30px 0px" }}>
             Delete
           </th> */}
@@ -95,19 +159,26 @@ function HouseManagement() {
                             return (
                               <tr key={index}>
                                 <th>
-                                  <div className={styles.align_items_center}>
-                                    <p>{houses.name}</p>
-                                  </div>
+                                  {/* <div className={styles.align_items_center}>
+                                    
+                                  </div> */}
+                                  <p>{houses.id}</p>
                                 </th>
-                                <td>
+                                <th>
                                   <p>{houses.name}</p>
-                                </td>
-                                <td>
-                                  <p>{houses.name}</p>
-                                </td>
-                                <td>
-                                  <p>{houses.name}</p>
-                                </td>
+                                </th>
+                                <th>
+                                  <p>{houses.description}</p>
+                                </th>
+                                <th>
+                                  <AppButton
+                                    children="Update"
+                                    btnType="button_2"
+                                    isSizeLarge={true}
+                                    htmlType="a"
+                                    onClick={() => update(houses)}
+                                  />
+                                </th>
                               </tr>
                             );
                           })}
@@ -124,11 +195,46 @@ function HouseManagement() {
           {/* <Pagination value={page} range={totalPages} onChange={setPage} /> */}
         </div>
       </div>
-      {/* <div className={styles.col_dash}>
+      <div className={styles.col_5}>
         <div className={styles.white_box_5}>
-          <UserTrip userList={users.trips} />
+          <div className="dailyPrediction_text_21">
+            <form className="et_pb_contact_form clearfix" onSubmit={submit}>
+              <div style={{ display: "flex" }}>
+                <AppInput
+                  type="text"
+                  children="Name"
+                  onChange={handleChanges("name")}
+                  value={formData.name}
+                />
+              </div>
+              <AppInput
+                type="text"
+                children="Description"
+                onChange={handleChanges("description")}
+                value={formData.description}
+              />
+              {Loading ? (
+                <div className="et_contact_bottom_container">
+                  <AppButton
+                    children="Loading ..."
+                    btnType="button_1"
+                    style={{ opacity: 0.7 }}
+                    disabled={Loading}
+                  />
+                </div>
+              ) : (
+                <div className="et_contact_bottom_container">
+                  <AppButton
+                    children={formData.status !== "update" ? "SAVE" : "UPDATE"}
+                    btnType="button_1"
+                    disabled={Loading}
+                  />
+                </div>
+              )}
+            </form>
+          </div>
         </div>
-      </div> */}
+      </div>
       <NotificationContainer />
     </div>
   );

@@ -39,17 +39,17 @@ function ZodiacManagement() {
   // }, [text]);
       const [zodiac, setZodiac] = useState("");
       const [zodiacs, setZodiacs] = useState([]);
-      const addZodiac = async (e) => {
-        e.preventDefault();
-        try {
-          const docRef = await addDoc(collection(db, "/zodiac"), {
-            zodiac: zodiac,
-          });
-          console.log(docRef.id);
-        } catch (e) {
-          console.error(e);
-        }
-      };
+      // const addZodiac = async (e) => {
+      //   e.preventDefault();
+      //   try {
+      //     const docRef = await addDoc(collection(db, "/zodiac"), {
+      //       zodiac: zodiac,
+      //     });
+      //     console.log(docRef.id);
+      //   } catch (e) {
+      //     console.error(e);
+      //   }
+      // };
 
       const fetchZodiac = async () => {
         await getDocs(collection(db, "/zodiac")).then((querySnapshot) => {
@@ -60,9 +60,23 @@ function ZodiacManagement() {
           setZodiacs(newData);
         });
       };
+      const fetchDailyQuote = async () => {
+        await getDocs(collection(db, "/dailyQuote")).then((res) => {
+          console.log(
+            "🚀 ~ file: index.jsx:65 ~ awaitgetDocs ~ querySnapshot:",
+            res
+          );
+          const dailyQuote = res.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          console.log("dailyQuote", dailyQuote);
+        });
+      };
 
       useEffect(() => {
         fetchZodiac();
+        fetchDailyQuote();
       }, []);
  
   return (
