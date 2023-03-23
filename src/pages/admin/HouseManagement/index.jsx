@@ -33,6 +33,10 @@ function HouseManagement() {
       axios({
         method: "PUT",
         url: `${process.env.REACT_APP_API_URL}/House/${data.name}/delete`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       })
         .then((res) => {
           setListHouse(listHouse.filter((f) => f.id !== data.id));
