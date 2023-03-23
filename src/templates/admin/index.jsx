@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 // import { useIsLogin } from "../../hooks/useIsLogin";
 
@@ -7,13 +8,13 @@ function AdminTemplate(props) {
 }
 
 const RouterAdminTemplate = ({ path, exact, Component }) => {
-//   const { isLogin } = useIsLogin();
+  const { user } = useSelector((state) => state.user);
   return (
     <Route
       path={path}
       exact={exact}
       render={() =>
-        true ? (
+        user.userRole === "admin" ? (
           <AdminTemplate>
             <Component />
           </AdminTemplate>

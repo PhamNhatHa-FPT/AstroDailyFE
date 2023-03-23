@@ -12,9 +12,11 @@ function CoverFooter() {
           <div className="et_pb_module et_pb_text et_pb_text_17 et_pb_text_align_center et_pb_bg_layout_light">
             <div className="et_pb_text_inner">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation.
+                Astrologer Home is brimming with free articles, features,
+                interpretations, and tools that will appeal to people with a
+                casual interest in learning Astrology, as well as beginning
+                through advanced students of Astrology. The site is run by FPT
+                students team.
               </p>
             </div>
           </div>

@@ -29,6 +29,20 @@ function PlanetManagement() {
       status: "update",
     });
   };
+    const Delete = (data) => {
+      axios({
+        method: "PUT",
+        url: `${process.env.REACT_APP_API_URL}/Planet/${data.name}/delete`,
+      })
+        .then((res) => {
+          setListHouse(listHouse.filter((f) => f.id !== data.id));
+          NotificationManager.success("success");
+        })
+        .catch((err) => {
+          console.log(err);
+          NotificationManager.error("error");
+        });
+    };
   useEffect(() => {
     const fetchData = async () => {
       text.trim()
@@ -175,13 +189,23 @@ function PlanetManagement() {
                                   <p>{houses.description}</p>
                                 </th>
                                 <th>
-                                  <AppButton
-                                    children="Update"
-                                    btnType="button_2"
-                                    isSizeLarge={true}
-                                    htmlType="a"
-                                    onClick={() => update(houses)}
-                                  />
+                                  <div style={{ display: "flex" }}>
+                                    <AppButton
+                                      children="Update"
+                                      btnType="button_2"
+                                      isSizeLarge={true}
+                                      htmlType="a"
+                                      onClick={() => update(houses)}
+                                    />
+                                    <div style={{ padding: "5px" }}></div>
+                                    <AppButton
+                                      children="Delete"
+                                      btnType="button_1"
+                                      isSizeLarge={true}
+                                      htmlType="a"
+                                      onClick={() => Delete(houses)}
+                                    />
+                                  </div>
                                 </th>
                               </tr>
                             );

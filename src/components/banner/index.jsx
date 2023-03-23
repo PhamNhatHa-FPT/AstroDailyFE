@@ -22,9 +22,10 @@ function Banner() {
               <h1 className="et_pb_module_header">Astrologer</h1>
               <div className="et_pb_header_content_wrapper">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation
+                  Astrologer Home is brimming with free articles, features, interpretations, 
+                and tools that will appeal to people with a casual interest in learning Astrology, 
+                as well as beginning through advanced students of Astrology. 
+                The site is run by FPT students team.
                 </p>
               </div>
               <AppButton

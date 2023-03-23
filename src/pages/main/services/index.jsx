@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
 import CardService from "../../../common/cardService";
@@ -5,10 +6,30 @@ import DailyPrediction from "../../../components/dailyPrediction";
 import TextInner from "../../../components/textInner";
 
 function Services() {
-  const { self, selfPlanet, selfZodiac, selfHouse } = useSelector(
-    (state) => state.user
-  );
-   console.log("🚀 ~ file: index.jsx:9 ~ Services ~ self:", self);
+  const { self, user } = useSelector((state) => state.user);
+  // setTimeout(
+  //   () =>
+  //     user &&
+  //     self &&
+  //     axios({
+  //       method: "POST",
+  //       url: `${
+  //         process.env.REACT_APP_API_URL
+  //       }/AstroProfile?input=${encodeURIComponent(
+  //         JSON.stringify(self)
+  //       )}&username=${user.userUsername}`,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       }),
+  //   3000
+  // );
   const zodiac = {
     img: "http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/icon-01.png",
     place: "image_1",
@@ -190,26 +211,26 @@ function Services() {
                 </div>
               </div>
               <div className="testimonial_text_13">
-                {selfPlanet.map((s, i) => (
+                {self.selfPlanet && self?.selfPlanet.map((s, i) => (
                   <div key={i}>
                     <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                      {s.name} ?
+                      {s.name} 
                     </h3>
                     <p>{s.description}</p>
                   </div>
                 ))}
-                {selfZodiac.map((s, i) => (
+                {self.selfZodiac && self?.selfZodiac.map((s, i) => (
                   <div key={i}>
                     <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                      {s.name} ?
+                      {s.name} 
                     </h3>
                     <p>{s.description}</p>
                   </div>
                 ))}
-                {selfHouse.map((s, i) => (
+                {self.selfHouse && self?.selfHouse.map((s, i) => (
                   <div key={i}>
                     <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                      {s.name} ?
+                      {s.name} 
                     </h3>
                     <p>{s.description}</p>
                   </div>

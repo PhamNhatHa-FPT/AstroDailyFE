@@ -1,13 +1,38 @@
 import React from "react";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AppButton from "../../common/button";
 import "./header.css";
 import { useDetectOutsideClick } from "./../../hooks/useOutsideClick";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getSelfSuccess } from "../../store/actions/user.action";
 function Menu({ handleLogout, user }) {
+  let history = useHistory();
+  const dispatch = useDispatch();
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
+  const onHistorySelf = () => {
+    axios({
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/AstroProfile/${user.userUsername}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res.data.$values.length > 0 );
+        if (res.data.$values.length > 0) {
+          dispatch(getSelfSuccess(res.data));
+          history.push("/self");
+        }
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div
       className="dropdown-container header-dropdown-menu"
@@ -59,11 +84,10 @@ function Menu({ handleLogout, user }) {
             </Link>
           </li>
           <li className="list-item">
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfbaOoGw82eXhX1la80_NM-P9Pv0lzxE1nUF85lp89s7G7vOw/viewform?usp=sf_link"
+            <Link
+              to="#"
               className="item"
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => onHistorySelf()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +101,8 @@ function Menu({ handleLogout, user }) {
                   d="M10 3h4a8 8 0 1 1 0 16v3.5c-5-2-12-5-12-11.5a8 8 0 0 1 8-8zm2 14h2a6 6 0 1 0 0-12h-4a6 6 0 0 0-6 6c0 3.61 2.462 5.966 8 8.48V17z"
                 />
               </svg>
-              <span>Send feedback</span>
-            </a>
+              <span>History Self</span>
+            </Link>
           </li>
 
           <li className="list-item list-item--separator" />

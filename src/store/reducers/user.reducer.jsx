@@ -17,9 +17,9 @@ const initialState = {
   self: null,
   weather: [],
   quote: [],
-  selfPlanet: [],
-  selfZodiac: [],
-  selfHouse: [],
+  // selfPlanet: [],
+  // selfZodiac: [],
+  // selfHouse: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -35,13 +35,13 @@ const userReducer = (state = initialState, action) => {
       return { ...state, self: payload };
     }
     case SELF_PLANET_SUCCESS: {
-      return { ...state, selfPlanet: payload };
+      return { ...state, self: { ...state.self, selfPlanet: payload }};
     }
     case SELF_ZODIAC_SUCCESS: {
-      return { ...state, selfZodiac: payload };
+      return { ...state, self: { ...state.self, selfZodiac: payload }};
     }
     case SELF_HOUSE_SUCCESS: {
-      return { ...state, selfHouse: payload };
+      return { ...state, self: { ...state.self, selfHouse: payload }};
     }
     case SELF_FAILED: {
       return { ...state, errors: payload };
