@@ -3,6 +3,7 @@ import SignUp from "../auth/SignUp";
 import VerifyEmail from "../auth/VerifyEmail";
 import Dashboard from "../pages/admin/Dashboard";
 import About from "../pages/main/about";
+import AstroProfile from "../pages/main/astroProfile";
 import Blog from "../pages/main/blog";
 import Contact from "../pages/main/contact";
 import Err from "../pages/main/err";
@@ -109,6 +110,11 @@ export const mainRouter = [
     path: "/verify-email",
     exact: true,
     Component: VerifyEmail,
+  },
+  {
+    path: "/astroProfile",
+    exact: true,
+    Component: AstroProfile,
   },
   // {
   //   path: "/dashboard",

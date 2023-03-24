@@ -6,30 +6,7 @@ import DailyPrediction from "../../../components/dailyPrediction";
 import TextInner from "../../../components/textInner";
 
 function Services() {
-  const { self, user } = useSelector((state) => state.user);
-  // setTimeout(
-  //   () =>
-  //     user &&
-  //     self &&
-  //     axios({
-  //       method: "POST",
-  //       url: `${
-  //         process.env.REACT_APP_API_URL
-  //       }/AstroProfile?input=${encodeURIComponent(
-  //         JSON.stringify(self)
-  //       )}&username=${user.userUsername}`,
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       }),
-  //   3000
-  // );
+  const { self } = useSelector((state) => state.user);
   const zodiac = {
     img: "http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/icon-01.png",
     place: "image_1",

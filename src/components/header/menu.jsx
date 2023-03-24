@@ -67,7 +67,7 @@ function Menu({ handleLogout, user }) {
             </li>
           )}
           <li className="list-item">
-            <Link className="item" to={`/profile/${user.displayName}`}>
+            <Link className="item" to={"/astroProfile"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -87,7 +87,7 @@ function Menu({ handleLogout, user }) {
             <Link
               to="#"
               className="item"
-              onClick={() => onHistorySelf()}
+              // onClick={() => onHistorySelf()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

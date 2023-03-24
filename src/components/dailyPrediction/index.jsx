@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import AppButton from "../../common/button";
 import AppInput from "../../common/input";
-import { getSelf } from "../../store/actions/user.action";
+import { getSelf, getSelfAstroProfile } from "../../store/actions/user.action";
 import "./dailyPrediction.css";
 
-function DailyPrediction() {
+function DailyPrediction({ profile }) {
   const dispatch = useDispatch();
   const [place, setPlace] = useState(null);
   const [Loading, setLoading] = useState(false);
@@ -44,7 +44,17 @@ function DailyPrediction() {
   }
   const submit = async (evt) => {
     evt.preventDefault();
-    dispatch(getSelf(formData, setFormData, setPlace, setText, setLoading));
+    profile
+      ? dispatch(
+          getSelfAstroProfile(
+            formData,
+            setFormData,
+            setPlace,
+            setText,
+            setLoading
+          )
+        )
+      : dispatch(getSelf(formData, setFormData, setPlace, setText, setLoading));
   };
   return (
     <div className="dailyPrediction_section">

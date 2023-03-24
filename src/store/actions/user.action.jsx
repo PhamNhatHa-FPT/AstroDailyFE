@@ -10,6 +10,12 @@ import {
   SELF_PLANET_SUCCESS,
   SELF_ZODIAC_SUCCESS,
   SELF_HOUSE_SUCCESS,
+  GET_ASTRO_PROFILE_SUCCESS,
+  SELF_ASTRO_PROFILE_SUCCESS,
+  SELF_ASTRO_PROFILE_PLANET_SUCCESS,
+  SELF_ASTRO_PROFILE_ZODIAC_SUCCESS,
+  SELF_ASTRO_PROFILE_HOUSE_SUCCESS,
+  POST_ASTRO_PROFILE_SUCCESS,
 } from "./../constants/user.const";
 
 // const API_URL = process.env.REACT_APP_API_URL;
@@ -212,5 +218,149 @@ export const getWeatherSuccess = (weather) => {
   return {
     type: WEATHER_SUCCESS,
     payload: weather,
+  };
+};
+
+export const getAstroProfile = (user) => {
+  return (dispatch) => {
+    axios({
+      method: "GET",
+      url: `${API_URL}/AstroProfile/${user.userUsername}`,
+    })
+      .then((res) => {
+      dispatch(getAstroProfileSuccess(res.data.$values[0]))
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+export const getAstroProfileSuccess = (astroProfile) => {
+  return {
+    type: GET_ASTRO_PROFILE_SUCCESS,
+    payload: astroProfile,
+  };
+};
+
+export const getSelfAstroProfile = (formData, setFormData, setPlace, setText) => {
+  return (dispatch) => {
+    axios({
+      method: "GET",
+      url: `${API_URL}/Horoscope?name=${formData.name}&date=${formData.date}&time=${formData.place_id}&place_id=${formData.place_id}`,
+    })
+      .then((res) => {
+        var planets = [];
+        var zodiacs = [];
+        var houses = [];
+        for (let i = 0; i < res.data.planets.length; i++) {
+          axios({
+            method: "GET",
+            url: `${API_URL}/Planet/${res.data.planets[i].planetName}`,
+          })
+            .then((res) => {
+              planets.push({
+                description: res.data[0].description,
+                name: res.data[0].name,
+              });
+              dispatch(getSelfAstroProfilePlanetSuccess(planets));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+        for (let i = 0; i < res.data.planets.length; i++) {
+          axios({
+            method: "GET",
+            url: `${API_URL}/Zodiac/${res.data.zodiacPoints[i].name}`,
+          })
+            .then((res) => {
+              zodiacs.push({
+                description: res.data[0].description,
+                name: res.data[0].name,
+              });
+              dispatch(getSelfAstroProfileZodiacSuccess(zodiacs));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+        for (let i = 0; i < res.data.planets.length; i++) {
+          axios({
+            method: "GET",
+            url: `${API_URL}/House/${res.data.housecusps[i].houseName}`,
+          })
+            .then((res) => {
+              houses.push({
+                description: res.data[0].description,
+                name: res.data[0].name,
+              });
+              console.log("1");
+              dispatch(getSelfAstroProfileHouseSuccess(houses));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+        for (let i = 0; i < 1; i++) {
+          axios({
+            method: "GET",
+            url: "https://astrodaily.monoinfinity.net/WeatherForecast",
+          })
+            .then((res) => {
+              dispatch(getPostSelfAstroProfileSuccess());
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+        dispatch(getSelfAstroProfileSuccess({ ...res.data, planets, zodiacs, houses }));
+        setFormData({
+          name: "",
+          date: "",
+          time: "",
+          place_id: 0,
+        });
+        setPlace(null);
+        setText("");
+      })
+      .catch((err) => {
+        dispatch(getSelfAstroProfileFailed(err));
+      });
+  };
+};
+
+export const getSelfAstroProfileSuccess = (self) => {
+  return {
+    type: SELF_ASTRO_PROFILE_SUCCESS,
+    payload: self,
+  };
+};
+export const getSelfAstroProfilePlanetSuccess = (selfPlanet) => {
+  return {
+    type: SELF_ASTRO_PROFILE_PLANET_SUCCESS,
+    payload: selfPlanet,
+  };
+};
+export const getSelfAstroProfileZodiacSuccess = (selfZodiac) => {
+  return {
+    type: SELF_ASTRO_PROFILE_ZODIAC_SUCCESS,
+    payload: selfZodiac,
+  };
+};
+export const getSelfAstroProfileHouseSuccess = (selfHouse) => {
+  return {
+    type: SELF_ASTRO_PROFILE_HOUSE_SUCCESS,
+    payload: selfHouse,
+  };
+};
+const getSelfAstroProfileFailed = (err) => {
+  return {
+    type: SELF_FAILED,
+    payload: err,
+  };
+};
+export const getPostSelfAstroProfileSuccess = () => {
+  return {
+    type: POST_ASTRO_PROFILE_SUCCESS,
   };
 };

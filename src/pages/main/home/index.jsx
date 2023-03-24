@@ -19,10 +19,7 @@ function Home() {
   return (
     <div className="et_builder_inner_content et_pb_gutters3">
       <Banner />
-      <Sticky />
-      <Zodiac />
-      <Testimonial />
-      {/* <div className="et_pb_section et_pb_section_1 et_pb_with_background et_section_regular">
+      <div className="et_pb_section et_pb_section_1 et_pb_with_background et_section_regular">
         <div className="et_pb_row et_pb_row_0">
           <div className="et_pb_column et_pb_column_4_4 et_pb_column_0 et_pb_css_mix_blend_mode_passthrough et-last-child">
             <div className="et_pb_module et_pb_text et_pb_text_0 et_pb_text_align_left et_pb_bg_layout_light">
@@ -62,8 +59,12 @@ function Home() {
           </div>
         </div>
       </div>
-      <ServicesHome />
-      <div className="et_pb_section et_pb_section_3 et_pb_with_background et_section_regular">
+      <Sticky />
+      <Zodiac />
+      <Testimonial />
+
+      {/* <ServicesHome /> */}
+      {/* <div className="et_pb_section et_pb_section_3 et_pb_with_background et_section_regular">
         <div className="et_pb_row et_pb_row_6">
           <div className="et_pb_column et_pb_column_4_4 et_pb_column_8 et_pb_css_mix_blend_mode_passthrough et-last-child">
             <div className="et_pb_module et_pb_text et_pb_text_11 et_pb_text_align_center et_pb_bg_layout_light">
