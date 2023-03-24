@@ -1,9 +1,13 @@
 import React from "react";
+import AppButton from "../../common/button";
 import "./testimonial.css";
 function Testimonial() {
   return (
     <div className="testimonial_section">
-      <div className="dailyPrediction_section" style={{paddingBottom: "100px"}}>
+      <div
+        className="dailyPrediction_section"
+        style={{ paddingBottom: "100px" }}
+      >
         <div className="dailyPrediction_gutters3">
           <div className="dailyPrediction_column_13">
             <div className="dailyPrediction_text_18">
@@ -38,8 +42,11 @@ function Testimonial() {
               <h3>Taurus</h3>
             </div>
             <div className="dailyPrediction_text_21">
-              zxc
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation.
             </div>
+            <AppButton children="get started" btnType="button_2" htmlType="a" />
           </div>
         </div>
       </div>
