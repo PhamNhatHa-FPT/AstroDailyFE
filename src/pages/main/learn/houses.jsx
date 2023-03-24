@@ -131,7 +131,7 @@ function Houses() {
         </table>
       </div>
       <div className="et_pb_section et_pb_section_1 et_section_regular">
-        <div className="et_pb_row et_pb_row_1">
+        <div className="et_pb_row et_pb_row_1" style={{ maxWidth: "100%" }}>
           <div className="et_pb_column et_pb_column_4_4 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough et-last-child">
             <div className="et_pb_with_border et_pb_module et_pb_pricing_tables_0 et_pb_pricing clearfix et_pb_pricing_3 et_pb_second_featured">
               <div className="et_pb_pricing_table_wrap">
@@ -140,6 +140,7 @@ function Houses() {
                   color="#fff"
                   children="PRIVATE / PUBLIC "
                   text="1st House / 7th House"
+                  textInner2="How you assert yourself to others"
                   textInner="How you function in close relationships, and how you use those relationships to learn about yourself"
                 />
                 <AppTag
@@ -147,6 +148,7 @@ function Houses() {
                   color="#313453"
                   children="PRIVATE / PUBLIC "
                   text="2nd House / 8th House"
+                  textInner2="How you express what you know, how you communicate with those you are close to or see frequently"
                   textInner="How you increase what you know, how you expand your horizons, often in a more abstract sense than that of the 3rd house"
                 />
                 <AppTag
@@ -154,6 +156,7 @@ function Houses() {
                   color="#313453"
                   children="PRIVATE / PUBLIC "
                   text="3rd House / 9th House"
+                  textInner2="How you express what you know, how you communicate with those you are close to or see frequently"
                   textInner="How you increase what you know, how you expand your horizons, often in a more abstract sense than that of the 3rd house"
                 />
                 <AppTag
@@ -161,6 +164,7 @@ function Houses() {
                   color="#313453"
                   children="PRIVATE / PUBLIC "
                   text="4st House / 10th House"
+                  textInner2="Your domestic world, your relationship with your (chosen) family, and the pull of the past"
                   textInner="How you go about achieving your goals, how you work, and what you hope to gain in the future"
                 />
                 <AppTag
@@ -168,6 +172,7 @@ function Houses() {
                   color="#313453"
                   children="PRIVATE / PUBLIC "
                   text="5nd House / 11th House"
+                  textInner2="Creative self-expression and personal pleasure"
                   textInner="Shared goals, idealism, and prioritizing the food of a group above the self"
                 />
                 <AppTag
@@ -175,6 +180,7 @@ function Houses() {
                   color="#fff"
                   children="PRIVATE / PUBLIC "
                   text="6rd House / 12th House"
+                  textInner2="How we can be helpful to those we love, day-to-day routines, and a need for order"
                   textInner="A more spiritual kind of service, or the work we need to do to protect and strengthen our own psychic"
                 />
               </div>

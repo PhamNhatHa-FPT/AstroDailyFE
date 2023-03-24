@@ -1,18 +1,19 @@
 import React from 'react'
 import CardService from '../../../common/cardService';
-import Sticky from '../../../components/sticky';
+import StickyVer2 from "../../../components/sticky/StickyVer2";
 import TextInner from '../../../components/textInner';
 
 function RisingSign() {
   return (
     <div className="et_builder_inner_content et_pb_gutters3">
       <TextInner child="Rising Sign ?" htmlType="h1" />
-      <Sticky
+      <StickyVer2
         h2="The “rising sign” or “ascendant” is the zodiac sign that was on the eastern horizon when and where you were born."
         p="IT'S CALLED THE RISING SIGN BECAUSE THAT ZODIAC CONSTELLATION IS RISING, OR ASCENDING, INTO THE SKY OVER THE EASTERN HORIZON."
         h3="The rising sign is an important concept in astrology."
         vi="The rising sign changes every two hours."
         Children="Each day, the entire zodiac appears to move across the sky. This means that every two hours, another one of the twelve zodiac signs becomes visible from below the horizon. But they aren’t actually moving around us; Earth itself is moving. Every 24 hours the Earth rotates 360°."
+        style={{ float: "left" }}
       />
       <div
         className="et_pb_section et_pb_section_1 et_section_regular"

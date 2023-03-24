@@ -1,11 +1,11 @@
 import "./textInner.css";
 
-function TextInner({ child, last, color, htmlType, isSizeLarge }) {
+function TextInner({ child, last, color, htmlType, isSizeLarge, style }) {
   if (htmlType === "h1") {
     return (
       <div className="pb_section">
         <div className="pb_section_inner">
-          <h1>{child}</h1>
+          <h1 style={style}>{child}</h1>
         </div>
       </div>
     );

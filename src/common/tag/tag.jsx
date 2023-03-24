@@ -10,11 +10,11 @@ function AppTag({
   bg,
   color,
   textInner,
+  textInner2,
   btnType,
   childrenBtn,
   ...restProps
 }) {
-
   return (
     <div
       className="pricing_table"
@@ -29,18 +29,21 @@ function AppTag({
           {/* <span className="dollar_sign" style={{ marginLeft: "-35.7px" }}>
             $
           </span> */}
-          <span className="sum" style={{fontSize: '35px'}}>{children}</span>
+          <span className="sum" style={{ fontSize: "35px" }}>
+            {children}
+          </span>
         </span>
       </div>
       <div className="pricing_content">
-        <ul className="pricing">
+        <ul className="pricing" style={{ display: "flex" }}>
+          <li>
+            <span>{textInner2}</span>
+          </li>
+          <div style={{ border: "1px solid", margin: "10px" }}></div>
           <li>
             <span>{textInner}</span>
           </li>
           {/* <li>
-            <span>Sit amet consectetur</span>
-          </li>
-          <li>
             <span>Adipiscing elit</span>
           </li> */}
         </ul>
