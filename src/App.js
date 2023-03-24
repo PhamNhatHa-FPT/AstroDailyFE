@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch } from "react-router-dom";
-import { mainRouter, adminRouter } from "./configs/router";
+import { mainRouter, adminRouter, signRouter } from "./configs/router";
 import RouterMainTemplate from "./templates/main";
 import RouterAdminTemplate from "./templates/admin";
 import "react-notifications/lib/notifications.css";
@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { AuthProvider } from "./auth/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./configs/firebase.configs";
+import RouterSigInTemplate from "./templates/signIn";
 function App() {
   const renderMainRouter = () => {
     return mainRouter.map(({ path, exact, Component }, index) => {
@@ -21,6 +22,18 @@ function App() {
       );
     });
   };
+    const renderSigInRouter = () => {
+      return signRouter.map(({ path, exact, Component }, index) => {
+        return (
+          <RouterSigInTemplate
+            path={path}
+            exact={exact}
+            Component={Component}
+            key={index}
+          ></RouterSigInTemplate>
+        );
+      });
+    };
   const renderAdminRouter = () => {
     return adminRouter.map(({ path, exact, Component }, index) => {
       return (
@@ -46,6 +59,7 @@ function App() {
         <AuthProvider value={{ currentUser, timeActive, setTimeActive }}>
           <Switch>
             {renderAdminRouter()}
+            {renderSigInRouter()}
             {renderMainRouter()}
           </Switch>
         </AuthProvider>

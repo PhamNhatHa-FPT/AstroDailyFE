@@ -9,7 +9,7 @@ import {
 import { auth } from "../configs/firebase.configs";
 import AppInput from "../common/input";
 import AppButton from "../common/button";
-import TextInner from "../components/textInner";
+// import TextInner from "../components/textInner";
 import { FaGoogle } from "react-icons/fa";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
@@ -29,7 +29,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         dispatch(postUser(userCredential.user.accessToken));
-        history.push("/");
+        // history.push("/");
       })
       .catch((error) => {
         setError(error.message);
@@ -60,7 +60,7 @@ function Login() {
             "userObject",
             JSON.stringify(currentUser.providerData[0])
           );
-          history.push("/");
+          // history.push("/");
         }
       });
       return () => {
@@ -72,71 +72,90 @@ function Login() {
     getUserDoc(authUser.uid, (userData) => {
       dispatch(postLoginSuccess(userData));
       localStorage.setItem("userObject", JSON.stringify(userData));
+      userData.userRole === "admin" && history.push("/dashboard");
     });
   }
   return (
     <div className="et_builder_inner_content et_pb_gutters3">
-      <TextInner child="Login" htmlType="h1" />
-      <div className="et_pb_section et_pb_section_1 et_section_regular">
-        <div
-          className="et_pb_row et_pb_row_1"
-          style={{ display: "flex", justifyContent: "center" }}
-        >
-          <div className="et_pb_column et_pb_column_1_2 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough et-last-child">
-            <div
-              id="et_pb_contact_form_0"
-              className="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix"
-            >
+      {/* <TextInner child="Login" htmlType="h1" /> */}
+      <div className="section_sticky">
+        <div className="row_0 row">
+          <div className="column_0 column">
+            <div className="image_sticky">
+              <span>
+                <img
+                  decoding="async"
+                  src="http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/astrology-illustrations-05-copy.png"
+                  alt=""
+                />
+              </span>
+            </div>
+            <div className="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
               <div className="et_pb_text_inner">
-                <h3
-                  style={{
-                    color: "rgb(254, 127, 92)",
-                    fontFamily: "Philosopher",
-                    paddingBottom: "20px",
-                  }}
-                >
-                  {error && error}
-                </h3>
+                <h2>Login</h2>
               </div>
-              <div className="et_pb_contact">
-                <form className="et_pb_contact_form clearfix" onSubmit={login}>
-                  <AppInput
-                    type="email"
-                    children="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <AppInput
-                    type="password"
-                    children="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <div className="et_contact_bottom_container">
-                    <AppButton
-                      type="submit"
-                      children="login"
-                      btnType="button_1"
-                      // htmlType="a"
-                    />
+            </div>
+            <div className="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_center et_pb_bg_layout_light" style={{padding:"20px 100px"}}>
+              <div className="et_pb_text_inner">
+                <div
+                  id="et_pb_contact_form_0"
+                  className="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix"
+                >
+                  <div className="et_pb_text_inner">
+                    <h3
+                      style={{
+                        color: "rgb(254, 127, 92)",
+                        fontFamily: "Philosopher",
+                        paddingBottom: "20px",
+                      }}
+                    >
+                      {error && error}
+                    </h3>
                   </div>
-                  {/* <AuthDetails /> */}
-                </form>
-                <div style={{display: "flex",paddingTop: "50px"}}>
-                  <AppButton
-                    children="Login"
-                    btnType="button_2"
-                    Icon={FaGoogle}
-                    htmlType="a"
-                    onClick={googleSignIn}
-                  />
-                  <div style={{ padding: "5px" }}></div>
-                  <AppButton
-                    children="Register"
-                    btnType="button_2"
-                    htmlType="link"
-                    url="/register"
-                  />
+                  <div className="et_pb_contact">
+                    <form
+                      className="et_pb_contact_form clearfix"
+                      onSubmit={login}
+                    >
+                      <AppInput
+                        type="email"
+                        children="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <AppInput
+                        type="password"
+                        children="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <div className="et_contact_bottom_container">
+                        <AppButton
+                          type="submit"
+                          children="login"
+                          btnType="button_1"
+                          // htmlType="a"
+                        />
+                      </div>
+                      {/* <AuthDetails /> */}
+                    </form>
+                    <div style={{ display: "flex", paddingTop: "50px" }}>
+                      <AppButton
+                        children="Login"
+                        btnType="button_2"
+                        Icon={FaGoogle}
+                        htmlType="a"
+                        onClick={googleSignIn}
+                      />
+                      <div style={{ padding: "5px" }}></div>
+                      <AppButton
+                        children="Register"
+                        btnType="button_2"
+                        htmlType="link"
+                        url="/register"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

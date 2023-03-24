@@ -1,10 +1,11 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Redirect, Route } from "react-router-dom";
 import CoverFooter from "../../components/coverFooter";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 
-function MainTemplate(props) {
+function SigInTemplate(props) {
   return (
     <div
       id="page-container"
@@ -28,18 +29,33 @@ function MainTemplate(props) {
   );
 }
 
-const RouterMainTemplate = ({ path, exact, Component }) => {
+const RouterSigInTemplate = ({ path, exact, Component }) => {
+  const { user } = useSelector((state) => state.user);
   return (
     <Route
       path={path}
       exact={exact}
-      render={() => (
-        <MainTemplate>
-          <Component />
-        </MainTemplate>
-      )}
+      render={() =>
+        !user ? (
+          <SigInTemplate>
+            <Component />
+          </SigInTemplate>
+        ) : user.userRole === "admin" ? (
+          <Redirect
+            to={{
+              pathname: "/dashboard",
+            }}
+          />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+            }}
+          />
+        )
+      }
     />
   );
 };
 
-export default RouterMainTemplate;
+export default RouterSigInTemplate;

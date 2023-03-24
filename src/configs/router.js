@@ -97,21 +97,6 @@ export const mainRouter = [
     Component: TransitsOrbs,
   },
   {
-    path: "/login",
-    exact: true,
-    Component: Login,
-  },
-  {
-    path: "/register",
-    exact: true,
-    Component: SignUp,
-  },
-  {
-    path: "/verify-email",
-    exact: true,
-    Component: VerifyEmail,
-  },
-  {
     path: "/astroProfile",
     exact: true,
     Component: AstroProfile,
@@ -135,6 +120,11 @@ export const signRouter = [
     path: "/register",
     exact: false,
     Component: SignUp,
+  },
+  {
+    path: "/verify-email",
+    exact: false,
+    Component: VerifyEmail,
   },
 ];
 export const adminRouter = [

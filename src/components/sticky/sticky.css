@@ -42,9 +42,9 @@
     text-align: center;
 }
 .section_sticky .row_1 .column_1{
-        float: left;
+        /* float: left; */
 width: 47.25%;
-        margin-right: 5.5%;
+      margin: auto;
 }
 .section_sticky .row_1 .column_2{
         float: left;

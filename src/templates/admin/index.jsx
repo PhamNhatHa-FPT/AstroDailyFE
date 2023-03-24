@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
-// import { useIsLogin } from "../../hooks/useIsLogin";
 
 function AdminTemplate(props) {
   return <main>{props.children}</main>;
@@ -14,7 +13,7 @@ const RouterAdminTemplate = ({ path, exact, Component }) => {
       path={path}
       exact={exact}
       render={() =>
-        user.userRole === "admin" ? (
+        user && user.userRole === "admin" ? (
           <AdminTemplate>
             <Component />
           </AdminTemplate>

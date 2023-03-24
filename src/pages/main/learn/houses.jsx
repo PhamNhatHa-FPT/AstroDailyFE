@@ -1,11 +1,55 @@
-import React from 'react'
-import AppTag from '../../../common/tag/tag';
-import TextInner from '../../../components/textInner';
+import React from "react";
+import AppTag from "../../../common/tag/tag";
+import TextInner from "../../../components/textInner";
 
 function Houses() {
   return (
-    <div className="et_builder_inner_content et_pb_gutters3">
+    <div className="et_builder_inner_content et_pb_gutters3 section_sticky">
       <TextInner child="Houses ?" htmlType="h1" />
+      <div>
+        <div className="container feature">
+          <img
+            className="feature-image-desktop feature-image-desktop-compat"
+            src="https://www.costarastrology.com/006d5aaabac593fb87b8b65628ec1a51.png"
+            alt=""
+          />
+          {/* <img
+            className="feature-image-mobile feature-image-mobile-compat"
+            src="https://www.costarastrology.com/24a634302b539b9588bfa02701f839f4.png"
+            alt=""
+          /> */}
+          <div className="section_sticky">
+            <div className="row_0 row">
+              <div className="column_0 column">
+                <div className="image_sticky">
+                  <span>
+                    <img
+                      decoding="async"
+                      src="http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/astrology-illustrations-05-copy.png"
+                      alt=""
+                    />
+                  </span>
+                </div>
+                <div className="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
+                  <div className="et_pb_text_inner">
+                    <h2>Better together</h2>
+                  </div>
+                </div>
+                <div
+                  className="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_center et_pb_bg_layout_light"
+                  style={{ padding: "20px 100px" }}
+                >
+                  <p>
+                    Keep track of your friends, see what's up with them
+                    astrologically if they’re having a bad day, and, of course,
+                    see whether you’re fated to fall in love.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="et_pb_row et_pb_row_4">
         <h3>They're the context, or the nouns.</h3>
         <div style={{ width: "100%", padding: "1.75rem 0px" }} />
@@ -142,4 +186,4 @@ function Houses() {
   );
 }
 
-export default Houses
+export default Houses;

@@ -16,19 +16,23 @@ function Sticky({ h2, h3, p, vi, Children }) {
           </div>
           <div className="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
             <div className="et_pb_text_inner">
-              <h2>{h2}</h2>
+              <h2>Transits & Orbs</h2>
             </div>
           </div>
           <div className="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_center et_pb_bg_layout_light">
             <div className="et_pb_text_inner">
-              <p>{p}</p>
+              <p>
+                Transits are time-based patterns that take place at regular
+                intervals, based on your chart. An orb is a buffer zone around
+                an angle to define what we count as an aspect.
+              </p>
             </div>
           </div>
         </div>
       </div>
       <div className="row_1 row">
-        <div className="column_1 column">
-          <div className="image_sticky_1">
+        <div className="column_1">
+          <div className="image_sticky_1" style={{ textAlign: "center" }}>
             <span className="et_pb_image_wrap ">
               <img
                 decoding="async"
@@ -39,7 +43,7 @@ function Sticky({ h2, h3, p, vi, Children }) {
             </span>
           </div>
         </div>
-        <div className="column_2 column">
+        {/* <div className="column_2 column">
           <div className="et_pb_module et_pb_text et_pb_text_2  et_pb_text_align_left et_pb_bg_layout_light">
             <div className="et_pb_text_inner">
               <h3>{h3}</h3>
@@ -66,7 +70,7 @@ function Sticky({ h2, h3, p, vi, Children }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

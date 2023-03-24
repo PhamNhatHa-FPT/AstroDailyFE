@@ -8,9 +8,9 @@ import {
 import { useHistory } from "react-router-dom";
 import AppButton from "../common/button";
 import AppInput from "../common/input";
-import TextInner from "../components/textInner";
+// import TextInner from "../components/textInner";
 import { useAuthValue } from "./AuthContext";
-import { v4 as uuidv4 } from "uuid"; 
+// import { v4 as uuidv4 } from "uuid"; 
 import { addDoc, collection } from "firebase/firestore";
 function SignUp() {
   let history = useHistory();
@@ -59,11 +59,6 @@ function SignUp() {
     //             console.log(error);
     //         });
     // };
-    const Datet = "21/04/2000";
-
-    const arr = Datet.split("/");
-
-    console.log(arr);
   const register = (e) => {
     e.preventDefault();
     setError("");
@@ -99,113 +94,131 @@ function SignUp() {
   };
     return (
       <div className="et_builder_inner_content et_pb_gutters3">
-        <TextInner child="Register" htmlType="h1" />
-        <div className="et_pb_section et_pb_section_1 et_section_regular">
-          <div
-            className="et_pb_row et_pb_row_1"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            <div className="et_pb_column et_pb_column_1_2 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough et-last-child">
+        {/* <TextInner child="Register" htmlType="h1" /> */}
+        <div className="section_sticky">
+          <div className="row_0 row">
+            <div className="column_0 column">
+              <div className="image_sticky">
+                <span>
+                  <img
+                    decoding="async"
+                    src="http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/astrology-illustrations-05-copy.png"
+                    alt=""
+                  />
+                </span>
+              </div>
+              <div className="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
+                <div className="et_pb_text_inner">
+                  <h2>Register</h2>
+                </div>
+              </div>
               <div
-                id="et_pb_contact_form_0"
-                className="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix"
+                className="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_center et_pb_bg_layout_light"
+                style={{ padding: "20px 100px" }}
               >
                 <div className="et_pb_text_inner">
-                  <h3
-                    style={{
-                      color: "rgb(254, 127, 92)",
-                      fontFamily: "Philosopher",
-                      paddingBottom: "20px",
-                    }}
+                  <div
+                    id="et_pb_contact_form_0"
+                    className="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix"
                   >
-                    {error && error}
-                  </h3>
-                </div>
+                    <div className="et_pb_text_inner">
+                      <h3
+                        style={{
+                          color: "rgb(254, 127, 92)",
+                          fontFamily: "Philosopher",
+                          paddingBottom: "20px",
+                        }}
+                      >
+                        {error && error}
+                      </h3>
+                    </div>
 
-                <div className="et_pb_contact">
-                  <form
-                    className="et_pb_contact_form clearfix"
-                    onSubmit={register}
-                  >
-                    <AppInput
-                      type="email"
-                      children="Email"
-                      value={formData.email}
-                      onChange={handleChange("email")}
-                    />
-                    <AppInput
-                      type="text"
-                      children="Username"
-                      value={formData.username}
-                      onChange={handleChange("username")}
-                    />
-                    <div style={{ display: "flex" }}>
-                      <AppInput
-                        style={{ width: "50%" }}
-                        type="text"
-                        children="FirstName"
-                        value={formData.firstName}
-                        onChange={handleChange("firstName")}
-                      />
-                      <div style={{ padding: "5px" }}></div>
-                      <AppInput
-                        style={{ width: "50%" }}
-                        type="text"
-                        children="LastName"
-                        value={formData.lastName}
-                        onChange={handleChange("lastName")}
-                      />
+                    <div className="et_pb_contact">
+                      <form
+                        className="et_pb_contact_form clearfix"
+                        onSubmit={register}
+                      >
+                        <AppInput
+                          type="email"
+                          children="Email"
+                          value={formData.email}
+                          onChange={handleChange("email")}
+                        />
+                        <AppInput
+                          type="text"
+                          children="Username"
+                          value={formData.username}
+                          onChange={handleChange("username")}
+                        />
+                        <div style={{ display: "flex" }}>
+                          <AppInput
+                            style={{ width: "50%" }}
+                            type="text"
+                            children="FirstName"
+                            value={formData.firstName}
+                            onChange={handleChange("firstName")}
+                          />
+                          <div style={{ padding: "5px" }}></div>
+                          <AppInput
+                            style={{ width: "50%" }}
+                            type="text"
+                            children="LastName"
+                            value={formData.lastName}
+                            onChange={handleChange("lastName")}
+                          />
+                        </div>
+                        <AppInput
+                          type="number"
+                          children="Phone"
+                          value={formData.phone}
+                          onChange={handleChange("phone")}
+                        />
+                        <div style={{ display: "flex" }}>
+                          <AppInput
+                            style={{ width: "50%" }}
+                            type="date"
+                            children="Date"
+                            value={formData.date}
+                            onChange={handleChange("date")}
+                          />
+                          <div style={{ padding: "5px" }}></div>
+                          <AppInput
+                            style={{ width: "50%" }}
+                            type="time"
+                            children="BirthTime"
+                            value={formData.birthTime}
+                            onChange={handleChange("birthTime")}
+                          />
+                        </div>
+                        <AppInput
+                          type="password"
+                          children="Password"
+                          value={formData.password}
+                          onChange={handleChange("password")}
+                        />
+                        <AppInput
+                          type="password"
+                          children="Confirm password"
+                          value={formData.confirmPassword}
+                          onChange={handleChange("confirmPassword")}
+                        />
+                        <div className="et_contact_bottom_container">
+                          <AppButton
+                            type="submit"
+                            children="Register"
+                            btnType="button_1"
+                          />
+                        </div>
+                      </form>
+                      <div style={{ display: "flex", paddingTop: "50px" }}>
+                        <AppButton
+                          children="Login"
+                          btnType="button_2"
+                          htmlType="link"
+                          url="/login"
+                        />
+                      </div>
                     </div>
-                    <AppInput
-                      type="number"
-                      children="Phone"
-                      value={formData.phone}
-                      onChange={handleChange("phone")}
-                    />
-                    <div style={{ display: "flex" }}>
-                      <AppInput
-                        style={{ width: "50%" }}
-                        type="date"
-                        children="Date"
-                        value={formData.date}
-                        onChange={handleChange("date")}
-                      />
-                      <div style={{ padding: "5px" }}></div>
-                      <AppInput
-                        style={{ width: "50%" }}
-                        type="time"
-                        children="BirthTime"
-                        value={formData.birthTime}
-                        onChange={handleChange("birthTime")}
-                      />
-                    </div>
-                    <AppInput
-                      type="password"
-                      children="Password"
-                      value={formData.password}
-                      onChange={handleChange("password")}
-                    />
-                    <AppInput
-                      type="password"
-                      children="Confirm password"
-                      value={formData.confirmPassword}
-                      onChange={handleChange("confirmPassword")}
-                    />
-                    <div className="et_contact_bottom_container">
-                      <AppButton
-                        type="submit"
-                        children="Register"
-                        btnType="button_1"
-                      />
-                    </div>
-                  </form>
-                  <div style={{ display: "flex", paddingTop: "50px" }}>
-                    <AppButton
-                      children="Login"
-                      btnType="button_2"
-                      htmlType="link"
-                      url="/login"
-                    />
                   </div>
                 </div>
               </div>

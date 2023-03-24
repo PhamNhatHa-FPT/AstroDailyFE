@@ -6,7 +6,7 @@ import TextInner from '../../../components/textInner';
 
 function WhatIsAstrology() {
   return (
-    <div className="et_builder_inner_content et_pb_gutters3">
+    <div className="et_builder_inner_content et_pb_gutters3 section_sticky">
       <TextInner child="What is astrology?" htmlType="h1" />
       <div
         className="et_pb_section et_pb_section_1 et_section_regular"

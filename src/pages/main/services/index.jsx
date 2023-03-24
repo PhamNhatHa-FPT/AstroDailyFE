@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
 import CardService from "../../../common/cardService";
@@ -44,17 +44,17 @@ function Services() {
       >
         <div className="et_pb_row et_pb_row_1">
           <CardService
-            children="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+            children="A natal chart (a.k.a. birth chart) is an astronomical snapshot of the stars based on the exact day, time, and place you were born."
             textInner="Horoscope"
             img="http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/astrologist-illustrations-15.png"
           />
           <CardService
-            children="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+            children="Using NASA data, we calculate the location of each planet, along with the sign of the zodiac and house it was in at the moment of your birth. If you can find out what time you were born, we can do the rest."
             textInner="Horoscope"
             img="http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/astrologist-illustrations-16.png"
           />
           <CardService
-            children="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+            children="In astrology, a natal chart reading indicates your character traits, behavioral tendencies, hidden desires, and the directions your life might take."
             textInner="Horoscope"
             img="http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/astrologist-illustrations-14.png"
           />
@@ -188,30 +188,33 @@ function Services() {
                 </div>
               </div>
               <div className="testimonial_text_13">
-                {self.selfPlanet && self?.selfPlanet.map((s, i) => (
-                  <div key={i}>
-                    <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                      {s.name} 
-                    </h3>
-                    <p>{s.description}</p>
-                  </div>
-                ))}
-                {self.selfZodiac && self?.selfZodiac.map((s, i) => (
-                  <div key={i}>
-                    <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                      {s.name} 
-                    </h3>
-                    <p>{s.description}</p>
-                  </div>
-                ))}
-                {self.selfHouse && self?.selfHouse.map((s, i) => (
-                  <div key={i}>
-                    <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                      {s.name} 
-                    </h3>
-                    <p>{s.description}</p>
-                  </div>
-                ))}
+                {self.selfPlanet &&
+                  self?.selfPlanet.map((s, i) => (
+                    <div key={i}>
+                      <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
+                        {s.name}
+                      </h3>
+                      <p>{s.description}</p>
+                    </div>
+                  ))}
+                {self.selfZodiac &&
+                  self?.selfZodiac.map((s, i) => (
+                    <div key={i}>
+                      <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
+                        {s.name}
+                      </h3>
+                      <p>{s.description}</p>
+                    </div>
+                  ))}
+                {self.selfHouse &&
+                  self?.selfHouse.map((s, i) => (
+                    <div key={i}>
+                      <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
+                        {s.name}
+                      </h3>
+                      <p>{s.description}</p>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
