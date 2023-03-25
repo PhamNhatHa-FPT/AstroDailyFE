@@ -10,10 +10,15 @@ import { getAstroProfile } from "../../../store/actions/user.action";
 
 function AstroProfile() {
   const dispatch = useDispatch();
-  const { user, astroProfile, selfAstroProfile } = useSelector(
-    (state) => state.user
-  );
-
+  const {
+    user,
+    astroProfile,
+    selfAstroProfile,
+    selfPlanetProfile,
+    selfZodiac,
+  } = useSelector((state) => state.user);
+    console.log(selfZodiac, selfPlanetProfile);
+    console.log(astroProfile, selfAstroProfile);
   useEffect(() => {
     dispatch(getAstroProfile(user));
     // eslint-disable-next-line
@@ -47,7 +52,7 @@ function AstroProfile() {
 
   return (
     <div className="et_builder_inner_content et_pb_gutters3">
-      <TextInner child="Seft" htmlType="h1" />
+      <TextInner child="Seft Astro Profile" htmlType="h1" />
       <DailyPrediction profile={true} />
       <div
         className="et_pb_section et_pb_section_1 et_section_regular"
@@ -200,75 +205,12 @@ function AstroProfile() {
                       </th>
                     </tr>
                   </table>
-                  <div
-                    className="testimonial_text_13"
-                    style={{ display: "flex", justifyContent: "space-evenly" }}
-                  >
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      <div style={{ color: "#fe7f5c" }}>Elements</div>
-                    </div>
-                    <div style={{ width: "50%" }}>
-                      {selfAstroProfile.elements.map((z, i) => (
-                        <div style={{ border: "1px solid" }} key={i}>
-                          {z.name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div
-                    className="testimonial_text_13"
-                    style={{ display: "flex", justifyContent: "space-evenly" }}
-                  >
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      <div style={{ color: "#fe7f5c" }}>Housecusps</div>
-                    </div>
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      {selfAstroProfile.housecusps.map((z, i) => (
-                        <div style={{ border: "1px solid" }} key={i}>
-                          {z.houseName}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div
-                    className="testimonial_text_13"
-                    style={{ display: "flex", justifyContent: "space-evenly" }}
-                  >
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      <div style={{ color: "#fe7f5c" }}>ZodiacPoints</div>
-                    </div>
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      {selfAstroProfile.zodiacPoints.map((z, i) => (
-                        <div style={{ border: "1px solid" }} key={i}>
-                          {z.name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                   <div className="testimonial_text_13">
-                    {selfAstroProfile.selfPlanet &&
-                      selfAstroProfile?.selfPlanet.map((s, i) => (
+                    {selfPlanetProfile &&
+                      selfPlanetProfile.map((s, i) => (
                         <div key={i}>
                           <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                            {s.name}
-                          </h3>
-                          <p>{s.description}</p>
-                        </div>
-                      ))}
-                    {selfAstroProfile.selfZodiac &&
-                      selfAstroProfile?.selfZodiac.map((s, i) => (
-                        <div key={i}>
-                          <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                            {s.name}
-                          </h3>
-                          <p>{s.description}</p>
-                        </div>
-                      ))}
-                    {selfAstroProfile.selfHouse &&
-                      selfAstroProfile?.selfHouse.map((s, i) => (
-                        <div key={i}>
-                          <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                            {s.name}
+                            description
                           </h3>
                           <p>{s.description}</p>
                         </div>
@@ -404,77 +346,14 @@ function AstroProfile() {
                       </th>
                     </tr>
                   </table>
-                  <div
-                    className="testimonial_text_13"
-                    style={{ display: "flex", justifyContent: "space-evenly" }}
-                  >
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      <div style={{ color: "#fe7f5c" }}>Elements</div>
-                    </div>
-                    <div style={{ width: "50%" }}>
-                      {astroProfile.Elements.$values.map((z, i) => (
-                        <div style={{ border: "1px solid" }} key={i}>
-                          {z.Name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div
-                    className="testimonial_text_13"
-                    style={{ display: "flex", justifyContent: "space-evenly" }}
-                  >
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      <div style={{ color: "#fe7f5c" }}>Housecusps</div>
-                    </div>
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      {astroProfile.Housecusps.$values.map((z, i) => (
-                        <div style={{ border: "1px solid" }} key={i}>
-                          HouseName
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div
-                    className="testimonial_text_13"
-                    style={{ display: "flex", justifyContent: "space-evenly" }}
-                  >
-                    <div style={{ width: "50%", border: "1px solid" }}>
-                      <div style={{ color: "#fe7f5c" }}>ZodiacPoints</div>
-                    </div>
-                    {/* <div style={{ width: "50%", border: "1px solid" }}>
-                  {astroProfile.ZodiacPoints.$values.map((z, i) => (
-                    <div style={{ border: "1px solid" }} key={i}>
-                      {z.name}
-                    </div>
-                  ))}
-                </div> */}
-                  </div>
                   <div className="testimonial_text_13">
-                    {astroProfile.SelfPlanets &&
-                      astroProfile?.SelfPlanets.$values.map((s, i) => (
+                    {selfZodiac &&
+                      selfZodiac.map((s, i) => (
                         <div key={i}>
                           <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                            {s.Name}
+                            description
                           </h3>
-                          <p>{s.Description}</p>
-                        </div>
-                      ))}
-                    {astroProfile.SelfZodiacs &&
-                      astroProfile?.SelfZodiacs.$values.map((s, i) => (
-                        <div key={i}>
-                          <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                            {s.Name}
-                          </h3>
-                          <p>{s.Description}</p>
-                        </div>
-                      ))}
-                    {astroProfile.SelfHouses &&
-                      astroProfile?.SelfHouses.$values.map((s, i) => (
-                        <div key={i}>
-                          <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                            {s.Name}
-                          </h3>
-                          <p>{s.Description}</p>
+                          <p>{s.description}</p>
                         </div>
                       ))}
                   </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import AppButton from '../../../common/button';
+// import AppButton from '../../../common/button';
 import TextInner from '../../../components/textInner';
 
 function HouseSystems() {
@@ -72,11 +72,11 @@ function HouseSystems() {
               </div>
             </div>
             <div className="et_pb_button_module_wrapper et_pb_button_5_wrapper et_pb_button_alignment_left et_pb_module">
-              <AppButton
+              {/* <AppButton
                 children="view more horoscope"
                 btnType="button_2"
                 htmlType="a"
-              />
+              /> */}
             </div>
           </div>
         </div>

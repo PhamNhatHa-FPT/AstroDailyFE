@@ -6,7 +6,7 @@ import DailyPrediction from "../../../components/dailyPrediction";
 import TextInner from "../../../components/textInner";
 
 function Services() {
-  const { self } = useSelector((state) => state.user);
+  const { self, selfPlanet } = useSelector((state) => state.user);
   const zodiac = {
     img: "http://zaib.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/08/icon-01.png",
     place: "image_1",
@@ -142,75 +142,12 @@ function Services() {
                   </th>
                 </tr>
               </table>
-              <div
-                className="testimonial_text_13"
-                style={{ display: "flex", justifyContent: "space-evenly" }}
-              >
-                <div style={{ width: "50%", border: "1px solid" }}>
-                  <div style={{ color: "#fe7f5c" }}>Elements</div>
-                </div>
-                <div style={{ width: "50%" }}>
-                  {self.elements.map((z, i) => (
-                    <div style={{ border: "1px solid" }} key={i}>
-                      {z.name}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div
-                className="testimonial_text_13"
-                style={{ display: "flex", justifyContent: "space-evenly" }}
-              >
-                <div style={{ width: "50%", border: "1px solid" }}>
-                  <div style={{ color: "#fe7f5c" }}>Housecusps</div>
-                </div>
-                <div style={{ width: "50%", border: "1px solid" }}>
-                  {self.housecusps.map((z, i) => (
-                    <div style={{ border: "1px solid" }} key={i}>
-                      {z.houseName}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div
-                className="testimonial_text_13"
-                style={{ display: "flex", justifyContent: "space-evenly" }}
-              >
-                <div style={{ width: "50%", border: "1px solid" }}>
-                  <div style={{ color: "#fe7f5c" }}>ZodiacPoints</div>
-                </div>
-                <div style={{ width: "50%", border: "1px solid" }}>
-                  {self.zodiacPoints.map((z, i) => (
-                    <div style={{ border: "1px solid" }} key={i}>
-                      {z.name}
-                    </div>
-                  ))}
-                </div>
-              </div>
               <div className="testimonial_text_13">
-                {self.selfPlanet &&
-                  self?.selfPlanet.map((s, i) => (
+                {selfPlanet &&
+                  selfPlanet.map((s, i) => (
                     <div key={i}>
                       <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                        {s.name}
-                      </h3>
-                      <p>{s.description}</p>
-                    </div>
-                  ))}
-                {self.selfZodiac &&
-                  self?.selfZodiac.map((s, i) => (
-                    <div key={i}>
-                      <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                        {s.name}
-                      </h3>
-                      <p>{s.description}</p>
-                    </div>
-                  ))}
-                {self.selfHouse &&
-                  self?.selfHouse.map((s, i) => (
-                    <div key={i}>
-                      <h3 style={{ fontSize: "22px", color: "#fe7f5c" }}>
-                        {s.name}
+                        description
                       </h3>
                       <p>{s.description}</p>
                     </div>

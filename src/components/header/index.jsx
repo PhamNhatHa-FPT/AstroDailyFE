@@ -17,7 +17,7 @@ import MenuLearnAstrology from "./menuLearn";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import Weather from "./weather";
+// import Weather from "./weather";
 function Header() {
   const dispatch = useDispatch();
   const { hidden, handleClick } = useIsHidden();
@@ -89,7 +89,7 @@ function Header() {
             </ul>
           </nav>
           <MenuLearnAstrology />
-          <Weather/>
+          {/* <Weather/> */}
           {user ? (
             <>
               <Menu handleLogout={handleSignOut} user={user} />

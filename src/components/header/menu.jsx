@@ -1,38 +1,38 @@
 import React from "react";
 import { useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AppButton from "../../common/button";
 import "./header.css";
 import { useDetectOutsideClick } from "./../../hooks/useOutsideClick";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { getSelfSuccess } from "../../store/actions/user.action";
+// import axios from "axios";
+// import { useDispatch } from "react-redux";
+// import { getSelfSuccess } from "../../store/actions/user.action";
 function Menu({ handleLogout, user }) {
-  let history = useHistory();
-  const dispatch = useDispatch();
+  // let history = useHistory();
+  // const dispatch = useDispatch();
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
-  const onHistorySelf = () => {
-    axios({
-      method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/AstroProfile/${user.userUsername}`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res.data.$values.length > 0 );
-        if (res.data.$values.length > 0) {
-          dispatch(getSelfSuccess(res.data));
-          history.push("/self");
-        }
+  // const onHistorySelf = () => {
+  //   axios({
+  //     method: "GET",
+  //     url: `${process.env.REACT_APP_API_URL}/AstroProfile/${user.userUsername}`,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log(res.data.$values.length > 0 );
+  //       if (res.data.$values.length > 0) {
+  //         dispatch(getSelfSuccess(res.data));
+  //         history.push("/self");
+  //       }
 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   return (
     <div
       className="dropdown-container header-dropdown-menu"
@@ -83,7 +83,7 @@ function Menu({ handleLogout, user }) {
               <span>Profile</span>
             </Link>
           </li>
-          <li className="list-item">
+          {/* <li className="list-item">
             <Link
               to="#"
               className="item"
@@ -103,7 +103,7 @@ function Menu({ handleLogout, user }) {
               </svg>
               <span>History Self</span>
             </Link>
-          </li>
+          </li> */}
 
           <li className="list-item list-item--separator" />
           <li className="list-item">

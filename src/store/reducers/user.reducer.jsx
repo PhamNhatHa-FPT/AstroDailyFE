@@ -26,8 +26,9 @@ const initialState = {
   weather: [],
   quote: [],
   astroProfile: null,
-  // selfPlanet: [],
-  // selfZodiac: [],
+  selfPlanet: [],
+  selfPlanetProfile: [],
+  selfZodiac: [],
   // selfHouse: [],
 };
 
@@ -47,7 +48,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, self: payload };
     }
     case SELF_PLANET_SUCCESS: {
-      return { ...state, self: { ...state.self, selfPlanet: payload } };
+      return { ...state, selfPlanet:[ ...state.selfPlanet, ...payload] };
     }
     case SELF_ZODIAC_SUCCESS: {
       return { ...state, self: { ...state.self, selfZodiac: payload } };
@@ -61,13 +62,13 @@ const userReducer = (state = initialState, action) => {
     case SELF_ASTRO_PROFILE_PLANET_SUCCESS: {
       return {
         ...state,
-        selfAstroProfile: { ...state.selfAstroProfile, selfPlanet: payload },
+        selfPlanetProfile: [...state.selfPlanetProfile, ...payload],
       };
     }
     case SELF_ASTRO_PROFILE_ZODIAC_SUCCESS: {
       return {
         ...state,
-        selfAstroProfile: { ...state.selfAstroProfile, selfZodiac: payload },
+        selfZodiac: [...state.selfZodiac, ...payload],
       };
     }
     case SELF_ASTRO_PROFILE_HOUSE_SUCCESS: {
@@ -79,13 +80,21 @@ const userReducer = (state = initialState, action) => {
     case POST_ASTRO_PROFILE_SUCCESS: {
       const arr = state.selfAstroProfile.profile.birthdate.date.split(" ");
       state.selfAstroProfile.profile.birthdate.date = arr[0];
+      const planets = state.selfAstroProfile.planets.slice(0, 2);
+      delete state.selfAstroProfile.elements;
+      delete state.selfAstroProfile.zodiacPoints;
+      delete state.selfAstroProfile.housecusps;
+      delete state.selfAstroProfile.aspects;
+      delete state.selfAstroProfile.angles;
+      delete state.selfAstroProfile.ascendant;
+      delete state.selfAstroProfile.midheaven;
       axios({
         method: "POST",
         url: `${process.env.REACT_APP_API_URL}/AstroProfile?username=${state.user.userUsername}`,
         headers: {
           "Content-Type": "application/json",
         },
-        data: { ...state.selfAstroProfile, selfHouse: payload },
+        data: { ...state.selfAstroProfile, planets },
       })
         .then((res) => {
           console.log(res);
@@ -93,7 +102,7 @@ const userReducer = (state = initialState, action) => {
         .catch((err) => {
           console.log(err);
         });
-      return { ...state, selfAstroProfile: state.selfAstroProfile };
+      return state;
     }
     case SELF_FAILED: {
       return { ...state, errors: payload };

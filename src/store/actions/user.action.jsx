@@ -61,58 +61,19 @@ export const getSelf = (formData, setFormData, setPlace, setText) => {
       url: `${API_URL}/Horoscope?name=${formData.name}&date=${formData.date}&time=${formData.place_id}&place_id=${formData.place_id}`,
     })
       .then((res) => {
-        var planets = [];
-        var zodiacs = [];
-        var houses = [];
-        for (let i = 0; i < res.data.planets.length; i++) {
+        for (let i = 0; i < 2; i++) {
           axios({
             method: "GET",
-            url: `${API_URL}/Planet/${res.data.planets[i].planetName}`,
+            url: `${API_URL}/Explanation/byid?zodiacId=${res.data.planets[i].signId}&houseId=${res.data.planets[i].housePosition}&planetId=${res.data.planets[i].planetId}`,
           })
             .then((res) => {
-              planets.push({
-                description: res.data[0].description,
-                name: res.data[0].name,
-              });
-              dispatch(getSelfPlanetSuccess(planets))
+              dispatch(getSelfPlanetSuccess(res.data));
             })
             .catch((err) => {
               console.log(err);
             });
         }
-        for (let i = 0; i < res.data.planets.length; i++) {
-          axios({
-            method: "GET",
-            url: `${API_URL}/Zodiac/${res.data.zodiacPoints[i].name}`,
-          })
-            .then((res) => {
-              zodiacs.push({
-                description: res.data[0].description,
-                name: res.data[0].name,
-              });
-              dispatch(getSelfZodiacSuccess(zodiacs));
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-        for (let i = 0; i < res.data.planets.length; i++) {
-          axios({
-            method: "GET",
-            url: `${API_URL}/House/${res.data.housecusps[i].houseName}`,
-          })
-            .then((res) => {
-              houses.push({
-                description: res.data[0].description,
-                name: res.data[0].name,
-              });
-              dispatch(getSelfHouseSuccess(houses));
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-        dispatch(getSelfSuccess({ ...res.data, planets, zodiacs, houses }));
+        dispatch(getSelfSuccess(res.data));
         setFormData({
           name: "",
           date: "",
@@ -228,7 +189,20 @@ export const getAstroProfile = (user) => {
       url: `${API_URL}/AstroProfile/${user.userUsername}`,
     })
       .then((res) => {
-      dispatch(getAstroProfileSuccess(res.data.$values[0]))
+        dispatch(getAstroProfileSuccess(res.data.$values[0]));
+        for (let i = 0; i < 2; i++) {
+          axios({
+            method: "GET",
+            url: `${API_URL}/Explanation/byid?zodiacId=${res.data.$values[0].ZodiacPoints.$values[i].Id}&houseId=${res.data.$values[0].Housecusps.$values[i].Id}&planetId=${res.data.$values[0].Elements.$values[i].Id}`,
+          })
+            .then((res) => {
+              dispatch(getSelfAstroProfileZodiacSuccess(res.data));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+
       })
       .catch((err) => {
         console.error(err);
@@ -249,53 +223,13 @@ export const getSelfAstroProfile = (formData, setFormData, setPlace, setText) =>
       url: `${API_URL}/Horoscope?name=${formData.name}&date=${formData.date}&time=${formData.place_id}&place_id=${formData.place_id}`,
     })
       .then((res) => {
-        var planets = [];
-        var zodiacs = [];
-        var houses = [];
-        for (let i = 0; i < res.data.planets.length; i++) {
+        for (let i = 0; i < 2; i++) {
           axios({
             method: "GET",
-            url: `${API_URL}/Planet/${res.data.planets[i].planetName}`,
+            url: `${API_URL}/Explanation/byid?zodiacId=${res.data.planets[i].signId}&houseId=${res.data.planets[i].housePosition}&planetId=${res.data.planets[i].planetId}`,
           })
             .then((res) => {
-              planets.push({
-                description: res.data[0].description,
-                name: res.data[0].name,
-              });
-              dispatch(getSelfAstroProfilePlanetSuccess(planets));
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-        for (let i = 0; i < res.data.planets.length; i++) {
-          axios({
-            method: "GET",
-            url: `${API_URL}/Zodiac/${res.data.zodiacPoints[i].name}`,
-          })
-            .then((res) => {
-              zodiacs.push({
-                description: res.data[0].description,
-                name: res.data[0].name,
-              });
-              dispatch(getSelfAstroProfileZodiacSuccess(zodiacs));
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-        for (let i = 0; i < res.data.planets.length; i++) {
-          axios({
-            method: "GET",
-            url: `${API_URL}/House/${res.data.housecusps[i].houseName}`,
-          })
-            .then((res) => {
-              houses.push({
-                description: res.data[0].description,
-                name: res.data[0].name,
-              });
-              console.log("1");
-              dispatch(getSelfAstroProfileHouseSuccess(houses));
+              dispatch(getSelfAstroProfilePlanetSuccess(res.data));
             })
             .catch((err) => {
               console.log(err);
@@ -313,7 +247,7 @@ export const getSelfAstroProfile = (formData, setFormData, setPlace, setText) =>
               console.log(err);
             });
         }
-        dispatch(getSelfAstroProfileSuccess({ ...res.data, planets, zodiacs, houses }));
+        dispatch(getSelfAstroProfileSuccess(res.data));
         setFormData({
           name: "",
           date: "",
